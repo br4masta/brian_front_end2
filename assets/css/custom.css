@@ -1,0 +1,11 @@
+.avatar-box img{
+    background-color: #7C7B7B;
+    border-radius: 30px;
+  }
+
+  .experience ul li::before {
+            content: '•'; /* Menambahkan titik */
+            color: #fff; /* Warna titik */
+            font-size: 20px; /* Ukuran titik */
+            margin-right: 10px; /* Jarak antara titik dan teks */
+        }

@@ -2,7 +2,10 @@
 
 
 
-// element toggle function
+
+
+function setInterac(){
+  // element toggle function
 const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
 
 
@@ -156,4 +159,5 @@ for (let i = 0; i < navigationLinks.length; i++) {
     }
 
   });
+}
 }
