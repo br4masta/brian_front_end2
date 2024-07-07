@@ -1,7 +1,7 @@
-.avatar-box img{
-    background-color: #7C7B7B;
-    border-radius: 30px;
-  }
+    .avatar-box img{
+        background-color: #7C7B7B;
+        border-radius: 30px;
+    }
 
   .experience ul li::before {
             content: '•'; /* Menambahkan titik */
@@ -9,3 +9,10 @@
             font-size: 20px; /* Ukuran titik */
             margin-right: 10px; /* Jarak antara titik dan teks */
         }
+
+    @media (max-width:720px) {
+        .avatar-box img{
+            background-color: #7C7B7B;
+            border-radius: 20px;
+            }
+    }

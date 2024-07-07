@@ -1,13 +1,13 @@
 
 function serviceList(){
     data = [{
-        img:`./assets/images/icon-design.svg`,
-        title:`Web design`,
-        description:`The most modern and high-quality design made at a professional level.`
-    },{
         img:`./assets/images/icon-dev.svg`,
         title:`Web development`,
         description:`High-quality development of sites at the professional level.`
+    },{
+        img:`./assets/images/icon-design.svg`,
+        title:`Web design`,
+        description:`The most modern and high-quality design made at a professional level.`
     },
     // {
     //     img:`./assets/images/icon-app.svg`,
@@ -47,7 +47,7 @@ function timeLineList(){
         description:`Computer Science`
     },{
         name:`Senior High School 1 Padangan, Bojonegoro`,
-        tahun:`2007 — 2008`,
+        tahun:`2015 — 2018`,
         description:`Natural Sciences`
     }]
 
@@ -72,7 +72,7 @@ function expericeList(){
         name:`Morning Glory Enteprise - Front End Developer`,
         tahun:`2023 — Now`,
         description:`
-        <ul style="list-style-type: disc;color:#fff">
+        <ul class="timeline-text">
             <li>Converting designs into functional code.</li>
             <li>Developing responsive user interfaces.</li>
             <li>Optimizing web interfaces for performance and usability.</li>
@@ -87,7 +87,7 @@ function expericeList(){
         tahun:`2022`,
         description:`
         Solving cash on delivery issues in the E-Commerce application.
-        <ul style="list-style-type: disc;color:#fff">
+        <ul class="timeline-text">
             <li>Learning Google Analytics.</li>
             <li>Conducting User and Competitor Research.</li>
             <li>Creating User Flow and Information Architecture.</li>
@@ -99,7 +99,7 @@ function expericeList(){
         tahun:`2022`,
         description:`
         Resolving business digitalization issues, in the form of an application to check the availability of goods and adding a payment feature to the Toko Amanah application.
-        <ul style="list-style-type: disc;color:#fff">
+        <ul class="timeline-text">
             <li>Conducting Competitor Research.</li>
             <li>Creating User Flow.</li>
             <li>Creating Card Sorting.</li>
@@ -112,7 +112,7 @@ function expericeList(){
         name:`Universitas Dr.Soetomo - Fulstack Web Developer (Internship)`,
         tahun:`2021 - 2022`,
         description:`
-        <ul style="list-style-type: disc;color:#fff">
+        <ul class="timeline-text">
             <li>Responsible to creating a web-based information system for the guidance and final project defense process using Codeigniter 4.</li>
             <li>Responsible to creating the database flow in the thesis system process.</li>
             <li>Responsible to managing the front end of the system.</li>
