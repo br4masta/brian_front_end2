@@ -139,6 +139,18 @@ function expericeList(){
 function portfolio(){
     data = [
         {
+            sourceGambar: './assets/images/new_asset/absensi_yefta.jpg',
+            judul: 'Absensi',
+            href: 'https://github.com/br4masta/absensi_yefta',
+            onHover: 'MGMX',
+            category:'web development'
+        },{
+            sourceGambar: './assets/images/new_asset/plastik prima.jpg',
+            judul: 'Plastik Prima',
+            href: 'http://47.74.214.215:82/pabrik_plastik/auth',
+            onHover: 'MGMX',
+            category:'web development'
+        },{
             sourceGambar: './assets/images/new_asset/MGMX.jpg',
             judul: 'MGMX',
             href: 'https://brianaldybramasta.wixsite.com/brianbramasta/mgmx',
@@ -238,7 +250,6 @@ $( document ).ready(function() {
     timeLineList()
     expericeList()
     portfolio()
-
     setInterac()
     
 });
