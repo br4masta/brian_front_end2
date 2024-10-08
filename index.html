@@ -169,6 +169,9 @@
           <li class="navbar-item">
             <button class="navbar-link  active" data-nav-link>About</button>
           </li>
+          <li class="navbar-item">
+            <button class="navbar-link  " data-nav-link>Skills</button>
+          </li>
 
           <li class="navbar-item">
             <button class="navbar-link" data-nav-link>Resume</button>
@@ -266,6 +269,69 @@
         
       </article>
 
+      <article class="skills " data-page="skills">
+        <header>
+          <h2 class="h2 article-title">My Skills</h2>
+        </header>
+        <style>
+          .skills.active .wrap-image{
+            display: flex;
+            /* justify-content: space-between; */
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+          }
+
+          .wrap-image img{
+            width: 40px;
+            height: max-content;
+            /* margin-bottom: 20px; */
+            -webkit-filter: grayscale(100%);
+            
+            
+          }
+
+          .image-wraper{
+            display: flex; 
+            align-items:center;
+            gap:6px;
+            min-width:130px;
+            cursor: pointer;
+            .text-image{
+              color: white;
+              max-width:85px;
+              font-size: 14px;
+            }
+          }
+
+          .wrap-image .image-wraper:hover{
+            
+            img{
+              -webkit-filter: unset;
+            }
+            .text-image{
+              color: hsl(35, 100%, 68%);
+            }
+          } 
+
+          
+          
+
+          .resume-btn{
+            margin-bottom: 10px;
+          }
+        </style>
+        <section class="skills-text">
+          <div class="wrap-image parent-skills">
+            
+          </div>
+         
+        </section>
+
+      
+        
+      </article>
+
 
 
 
@@ -280,21 +346,10 @@
           <h2 class="h2 article-title">Resume</h2>
         </header>
 
-        <a  href="https://drive.google.com/file/d/1kCFRUztAq7Mkym9kEEco4SA3Q3fc0CKS/view?usp=sharing"
-        target='_blank'  class="form-btn"  data-form-btn="">
+        <a  href="https://drive.google.com/file/d/1jwMzHyF5hGRiJDU2Ig9feeJOV0JyFMsp/view?usp=sharing"
+        target='_blank'  class="form-btn resume-btn"  data-form-btn="">
           <span>Resume</span>
         </a>
-
-        <section class="timeline">
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
-            </div>
-            <h3 class="h3">Experience</h3>
-          </div>
-          <ol class="timeline-list experience">
-          </ol>
-        </section>
 
         <section class="timeline">
           <div class="title-wrapper">
@@ -307,6 +362,19 @@
           </ol>
 
         </section>
+
+        <section class="timeline">
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+            <h3 class="h3">Experience</h3>
+          </div>
+          <ol class="timeline-list experience">
+          </ol>
+        </section>
+
+        
 
         
 
@@ -632,7 +700,7 @@
   <!--
     - custom js link
   -->
-  <script src="./assets/js/custom.js"></script>
+  <!-- <script src="./assets/js/custom.js"></script> -->
   <script src="./assets/js/script.js"></script>
 
   <!--
@@ -640,6 +708,396 @@
   -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <script>
+    
+function serviceList() {
+    data = [{
+        img: `./assets/images/icon-dev.svg`,
+        title: `Web development`,
+        description: `High-quality development of sites at the professional level.`
+    }, {
+        img: `./assets/images/icon-design.svg`,
+        title: `Web design`,
+        description: `The most modern and high-quality design made at a professional level.`
+    },
+        // {
+        //     img:`./assets/images/icon-app.svg`,
+        //     title:`Mobile apps`,
+        //     description:`Professional development of applications for iOS and Android.`
+        // },{
+        //     img:`./assets/images/icon-photo.svg`,
+        //     title:`Photography`,
+        //     description:`I make high-quality photos of any category at a professional level.`
+        // }
+    ]
+
+    let html = '';
+    data.map(item => {
+        html += `<li class="service-item">
+              <div class="service-icon-box">
+                <img src="${item.img}
+                " alt="design icon" width="40">
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">${item.title}</h4>
+                <p class="service-item-text">
+                    ${item.description}
+                </p>
+              </div>
+            </li>`
+    })
+
+    $('.service-list').html(html)
+}
+
+function education() {
+
+    data = [{
+        name: `University Dr. Soetomo, Surabaya (Computer Science)`,
+        tahun: `2018 — 2022`,
+        description: `
+        <ul class="timeline-text">
+            <li>Developed a Final Project Management Application using CodeIgniter 4 and MySQL to assist students with their final projects.</li>
+            <li>Conducted final project research by developing an Augmented Reality application for introducing the environment of Purwosari 1 Elementary School Bojonegoro using the Markerless User Defined Target method.</li>
+        </ul>
+        `
+    }, 
+    // {
+    //     name: `Senior High School 1 Padangan, Bojonegoro`,
+    //     tahun: `2015 — 2018`,
+    //     description: `Natural Sciences`
+    // }
+  ]
+
+    let html = '';
+    data.map(item => {
+        html += `<li class="timeline-item">
+            <h4 class="h4 timeline-item-title">${item.name}</h4>
+            <span>${item.tahun}</span>
+            <p class="timeline-text">
+            ${item.description}
+            </p>
+        </li>`
+    })
+
+    $('.education').html(html)
+
+}
+
+function expericeList() {
+  let mgeUpdatePortfolio = `<ul class="timeline-text">
+    <li>Converting designs into functional code</li>
+    <li>Write clean, scalable, and efficient code following best practices and coding standards</li>
+    <li>Ensure the responsiveness and performance of applications across different platforms and 
+devices</li>
+    <li>Optimizing web interfaces for performance and usability</li>
+    <li>Implement RESTful APIs and integrate with various third-party services</li>
+    <li>Delivers solutions on-time and according to schedule</li>
+    <li>Work with managers, developers, analysts, and other engineering teams to improve 
+application performance, reliability, code quality and consistency, delivery, and velocity</li>
+    <li>Delivers and helps to ensure delivery of quality code, thorough testing, with fewer defects 
+that rarely requires cleanup / refactoring</li>
+    <li>Create, maintain, and update internally and externally built websites, applications, and 
+integrations.</li>
+    
+    
+    `
+
+
+
+
+
+
+
+
+
+
+    data = [
+      {
+        name: `Morning Glory Enteprise - Front End Developer`,
+        tahun: `2023 — Now`,
+        description: `
+        <ul class="timeline-text">
+            <li>Converting designs into functional code.</li>
+            <li>Developing responsive user interfaces.</li>
+            <li>Optimizing web interfaces for performance and usability.</li>
+            <li>Enhancing interactivity in user interfaces.</li>
+            <li>Implement RESTful APIs and integrate with various third-party services.</li>
+            <li>Managing time effectively to meet deadlines.</li>
+            <li>Collaborating with managers, developers, analysts, and other engineering teams to improve 
+application performance, reliability, code quality and consistency, delivery. </li>
+        </ul>`,
+        // description: mgeUpdatePortfolio,
+    }, {
+        name: `Nuri - UI/UX Designer (Internship)`,
+        tahun: `2022`,
+        description: `
+        Solving cash on delivery issues in the E-Commerce application.
+        <ul class="timeline-text">
+            <li>Learning Google Analytics.</li>
+            <li>Conducting User and Competitor Research.</li>
+            <li>Creating User Flow and Information Architecture.</li>
+            <li>Creating Wireframes.</li>
+            <li>Creating Visual Design Prototyping.</li>
+        </ul>`
+    }, {
+        name: `Toko Amanah - UI/UX Designer (Internship)`,
+        tahun: `2022`,
+        description: `
+        Resolving business digitalization issues, in the form of an application to check the availability of goods and adding a payment feature to the Toko Amanah application.
+        <ul class="timeline-text">
+            <li>Conducting Competitor Research.</li>
+            <li>Creating User Flow.</li>
+            <li>Creating Card Sorting.</li>
+            <li>Creating Information Architecture.</li>
+            <li>Creating Wireframes.</li>
+            <li>Creating Visual Design.</li>
+            <li>Conducting Usability Testing.</li>
+        </ul>`
+    }, {
+        name: `Universitas Dr.Soetomo - Fulstack Web Developer (Internship)`,
+        tahun: `2021 - 2022`,
+        description: `
+        <ul class="timeline-text">
+            <li>Responsible to creating a web-based information system for the guidance and final project defense process using Codeigniter 4.</li>
+            <li>Responsible to creating the database flow in the thesis system process.</li>
+            <li>Responsible to managing the front end of the system.</li>
+            <li>Responsible to managing the back end of the system.</li>
+            <li>Responsible for reporting any progress to the field supervisor.</li>
+        </ul>`
+    },]
+
+    let html = '';
+    data.map(item => {
+        html += `<li class="timeline-item">
+            <h4 class="h4 timeline-item-title">${item.name}</h4>
+            <span>${item.tahun}</span>
+            <p class="timeline-text">
+            ${item.description}
+            </p>
+        </li>`
+    })
+
+    $('.experience').html(html)
+
+}
+
+function portfolio() {
+    data = [{
+            sourceGambar: './assets/images/new_asset/e-money.jpg',
+            judul: 'E-Money Custom',
+            href: '#',
+            onHover: 'E-Money Custom',
+            category: 'web development'
+        },
+        {
+            sourceGambar: './assets/images/new_asset/service desk.png',
+            judul: 'Service Desk',
+            href: '#',
+            onHover: 'Service Desk',
+            category: 'web development'
+        }, {
+            sourceGambar: './assets/images/new_asset/gkid.jpg',
+            judul: 'Project Management - GKDI',
+            href: 'https://brianaldybramasta.wixsite.com/brianbramasta/gkdi',
+            onHover: 'MGMX',
+            category: 'web development'
+        },  {
+            sourceGambar: './assets/images/new_asset/plastik prima.jpg',
+            judul: 'Plastik Prima',
+            href: 'http://47.74.214.215:82/pabrik_plastik/auth',
+            onHover: 'MGMX',
+            category: 'web development'
+        }, {
+            sourceGambar: './assets/images/new_asset/absensi_yefta.jpg',
+            judul: 'Absensi Karyawan',
+            href: 'https://github.com/br4masta/absensi_yefta',
+            onHover: 'MGMX',
+            category: 'web development'
+        },{
+            sourceGambar: './assets/images/new_asset/MGMX.jpg',
+            judul: 'MGMX',
+            href: 'https://brianaldybramasta.wixsite.com/brianbramasta/mgmx',
+            onHover: 'MGMX',
+            category: 'web development'
+        },
+        {
+            sourceGambar: './assets/images/new_asset/AzLogistik.jpg',
+            judul: 'AZ Logistic',
+            href: 'https://brianaldybramasta.wixsite.com/brianbramasta/az-logistic',
+            onHover: 'AZ Logistic',
+            category: 'web development'
+        },
+        {
+            sourceGambar: './assets/images/new_asset/FamilyTree.jpg',
+            judul: 'Family Tree',
+            href: 'http://47.74.214.215:82/family_tree_dev/auth',
+            onHover: `Creating User Interface for the Back Office<br />Role: Front End`,
+            category: 'web development'
+        },
+        {
+            sourceGambar: './assets/images/new_asset/KBOnline.jpg',
+            judul: 'KB Online',
+            href: 'http://47.74.214.215:82/purchasing-kb/user/login',
+            onHover: 'KB Online',
+            category: 'web development'
+        }, {
+            sourceGambar: './assets/images/new_asset/tracking user.jpg',
+            judul: 'Pantau Aja',
+            href: 'http://47.74.214.215:82/tracking_user/auth',
+            onHover: 'Sistem Tracking',
+            category: 'web development'
+        },
+        {
+            sourceGambar: './assets/images/new_asset/payroll sistem.jpg',
+            judul: 'Rajapaksi',
+            href: 'https://rajapaksidev.mgbix.id/',
+            onHover: 'Sistem Absensi dan Penggajian',
+            category: 'web development'
+        }, {
+            sourceGambar: './assets/images/new_asset/LandingPage.jpg',
+            judul: 'Landing Page',
+            href: 'http://47.74.214.215:82/tracking_compro/',
+            onHover: 'Landing Page',
+            category: 'web development'
+        },
+        {
+            sourceGambar: './assets/images/new_asset/si.jpg',
+            judul: 'Sistem Informasi Manajemen Tugas Akhir',
+            href: 'https://brianaldybramasta.wixsite.com/brianbramasta/siteminformasimanajementugasakhir',
+            onHover: 'Sistem Informasi Manajemen Tugas Akhir',
+            category: 'web development'
+        }, {
+            sourceGambar: './assets/images/new_asset/tokoamanah.jpg',
+            judul: 'Toko Amanah',
+            href: 'https://brianaldybramasta.wixsite.com/brianbramasta/toko-amanah',
+            onHover: 'UI and UX Design Toko Amanah',
+            category: 'ui/ux'
+        }, {
+            sourceGambar: './assets/images/new_asset/nuri.png',
+            judul: 'UX Design PT Nuri',
+            href: 'https://brianaldybramasta.wixsite.com/brianbramasta/cashondelivery',
+            onHover: 'UI and UX Design Toko Amanah',
+            category: 'ui/ux'
+        }
+        // {
+        //     sourceGambar: './assets/images/new_asset/movie search.jpg',
+        //     judul: 'Search Movie',
+        //     href: 'https://brianaldybramasta.wixsite.com/brianbramasta/siteminformasimanajementugasakhir',
+        //     onHover: 'React Consume API, search movie'
+        // }
+    ]
+
+    let html = '';
+    data.map(item => {
+        html += `<li class="project-item  active" data-filter-item data-category="${item.category}">
+              <a href="${item.href}" target="_blank">
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="${item.sourceGambar}" alt="finance" loading="lazy" style="height: 145.859px;
+                    object-fit: contain;">
+                </figure>
+                <h3 class="project-title">${item.judul}</h3>
+                <p class="project-category">${item.category}</p>
+              </a>
+            </li>`
+    })
+
+    $('.project-list').html(html)
+
+}
+
+function setSklilss(){
+  data = [
+        {
+            image: './assets/images/skills/react.png',
+            name: 'React Js',
+        },{
+            image: './assets/images/skills/vue.png',
+            name: 'Vue Js',
+        }
+        // ,{
+        //     image: './assets/images/skills/php.png',
+        //     name: 'PHP',
+        // }
+        ,{
+            image: './assets/images/skills/jquery.png',
+            name: 'Jquery',
+        },{
+            image: './assets/images/skills/quasar.png',
+            name: 'Quasar Framework',
+        },{
+            image: './assets/images/skills/node.png',
+            name: 'Node Js',
+        },{
+            image: './assets/images/skills/express.png',
+            name: 'Express Js',
+        },{
+            image: './assets/images/skills/silverstripe.png',
+            name: 'Silverstripe',
+        },
+        {
+            image: './assets/images/skills/html5.png',
+            name: 'HTML 5',
+        },{
+            image: './assets/images/skills/css3.png',
+            name: 'CSS 3',
+        },{
+            image: './assets/images/skills/html5.png',
+            name: 'Semantic HTML',
+        },
+        // {
+        //     image: './assets/images/skills/html.png',
+        //     name: 'HTML, CSS, JavaScript',
+        // }
+        {
+            image: './assets/images/skills/git.png',
+            name: 'GIT',
+        },{
+            image: './assets/images/skills/seo.png',
+            name: 'SEO',
+        },{
+            image: './assets/images/skills/laravel.png',
+            name: 'Laravel',
+        },{
+            image: './assets/images/skills/codeigniter.png',
+            name: 'Codeigniter',
+        },
+        // {
+        //     image: './assets/images/skills/vscode.png',
+        //     name: 'VS Code',
+        // },{
+        //     image: './assets/images/skills/sublime.png',
+        //     name: 'Sublime Text',
+        // }
+    ]
+  let html = '';
+    data.map(item => {
+        html += `
+        <div style="" class="image-wraper">
+          <img src="${item.image}" alt="" loading="lazy">
+          <span style="" class="text-image">${item.name}</span>
+        </div>`
+    })
+
+
+    $('.parent-skills').html(html)
+}
+
+$(document).ready(function () {
+    console.log('tes')
+    serviceList()
+    education()
+    expericeList()
+    portfolio()
+    setInterac()
+    setSklilss()
+
+});
+  </script>
 
 </body>
 
