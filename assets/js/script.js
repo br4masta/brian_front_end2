@@ -1,8 +1,63 @@
 'use strict';
 
+// Dark mode functionality
+const initDarkMode = () => {
+  const darkModeToggle = document.querySelector('[data-theme-toggle]');
+  const body = document.body;
+  
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+    body.classList.add('light-mode');
+  }
 
+  darkModeToggle?.addEventListener('click', () => {
+    body.classList.toggle('light-mode');
+    localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light' : 'dark');
+  });
+}
 
+// Loading spinner
+const showLoadingSpinner = () => {
+  const spinner = document.createElement('div');
+  spinner.className = 'loading-spinner';
+  document.body.appendChild(spinner);
+}
 
+const hideLoadingSpinner = () => {
+  const spinner = document.querySelector('.loading-spinner');
+  spinner?.remove();
+}
+
+// Enhanced form validation
+const enhanceFormValidation = () => {
+  const form = document.querySelector('[data-form]');
+  const inputs = form?.querySelectorAll('input, textarea');
+
+  inputs?.forEach(input => {
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    input.after(errorDiv);
+
+    input.addEventListener('input', () => validateInput(input));
+  });
+}
+
+const validateInput = (input) => {
+  const errorDiv = input.nextElementSibling;
+  let isValid = true;
+  let errorMessage = '';
+
+  if (input.type === 'email' && !input.value.includes('@')) {
+    isValid = false;
+    errorMessage = 'Please enter a valid email address';
+  } else if (input.tagName === 'TEXTAREA' && input.value.length < 10) {
+    isValid = false;
+    errorMessage = 'Message must be at least 10 characters long';
+  }
+
+  errorDiv.textContent = errorMessage;
+  return isValid;
+}
 
 function setInterac(){
   // element toggle function
@@ -84,15 +139,15 @@ const filterItems = document.querySelectorAll("[data-filter-item]");
 const filterFunc = function (selectedValue) {
 
   for (let i = 0; i < filterItems.length; i++) {
-
-    if (selectedValue === "all") {
-      filterItems[i].classList.add("active");
-    } else if (selectedValue === filterItems[i].dataset.category) {
-      filterItems[i].classList.add("active");
+    const item = filterItems[i];
+      
+    if (selectedValue === "all" || selectedValue === item.dataset.category) {
+      item.classList.remove('hidden');
+      setTimeout(() => item.classList.add('active'), 10);
     } else {
-      filterItems[i].classList.remove("active");
+      item.classList.remove('active');
+      setTimeout(() => item.classList.add('hidden'), 300);
     }
-
   }
 
 }
@@ -160,4 +215,15 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
   });
 }
+
+// Initialize new features
+initDarkMode();
+enhanceFormValidation();
+
 }
+
+// Add loading spinner on page load
+document.addEventListener('DOMContentLoaded', () => {
+  showLoadingSpinner();
+  setTimeout(hideLoadingSpinner, 1000); // Hide after 1 second
+});

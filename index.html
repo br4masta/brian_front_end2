@@ -11,7 +11,7 @@
   <!--
     - favicon
   -->
-  <link rel="shortcut icon" href="./assets/images/new_asset/brian pp.png" type="image/x-icon">
+  <link rel="shortcut icon" href="./assets/images/new_asset/brian profil 2.png" type="image/x-icon">
 
   <!--
     - custom css link
@@ -45,13 +45,13 @@
       <div class="sidebar-info">
 
         <figure class="avatar-box">
-          <img src="./assets/images/new_asset/brian kotak.png" alt="Brian Bramasta" width="80">
+          <img src="./assets/images/new_asset/brian profil 2 squere.png" alt="Brian Bramasta" width="80">
         </figure>
 
         <div class="info-content">
           <h1 class="name" title="Brian Aldy Bramasta">Brian Bramasta</h1>
 
-          <p class="title">Frontend Developer | UI/UX Designer</p>
+          <p class="title" style="color:white">Frontend Developer</p>
         </div>
 
         <button class="info_more-btn" data-sidebar-btn>
@@ -106,7 +106,7 @@
             <div class="contact-info">
               <p class="contact-title">Birthday</p>
 
-              <time datetime="1982-06-23">January 27</time>
+              <time datetime="1982-06-23">January 27, 2000</time>
             </div>
 
           </li>
@@ -167,6 +167,12 @@
         <ul class="navbar-list">
 
           <li class="navbar-item">
+            <button class="navbar-link theme-toggle" aria-label="Toggle theme" data-theme-toggle>
+              <ion-icon name="contrast-outline"></ion-icon>
+            </button>
+          </li>
+
+          <li class="navbar-item">
             <button class="navbar-link  active" data-nav-link>About</button>
           </li>
           <li class="navbar-item">
@@ -204,7 +210,7 @@
 
         <section class="about-text">
           <p>
-            I am a Front End Developer and UI/UX enthusiast with a keen interest in creating user interfaces. I specialize in using design tools like <strong>Figma</strong> and <strong>Adobe XD</strong> to craft responsive user interfaces, and I am proficient in programming languages such as <strong>JavaScript</strong> and <strong>PHP</strong> to build dynamic web applications. Additionally, I have experience in conducting user research and performing user testing to enhance the overall user experience. Currently, I am actively working as a Front End Developer at a software house in Surabaya.
+            I am a Front End Developer with 2 years of experience specializing in building fast, responsive, and efficient web applications. With expertise in JavaScript, PHP, React.js, Laravel, and Quasar (Vue.js), I focus on delivering high-performance solutions that enhance user satisfaction. I thrive on optimizing application speed and ensuring scalability, always staying ahead of the latest web technologies.
           </p>
         </section>
 
@@ -346,7 +352,7 @@
           <h2 class="h2 article-title">Resume</h2>
         </header>
 
-        <a  href="https://drive.google.com/file/d/1jwMzHyF5hGRiJDU2Ig9feeJOV0JyFMsp/view?usp=sharing"
+        <a  href="https://drive.google.com/file/d/1Z9O2vK1BOwidKIk5ZQr2_dScouFU90eh/view?usp=sharing"
         target='_blank'  class="form-btn resume-btn"  data-form-btn="">
           <span>Resume</span>
         </a>
@@ -735,31 +741,32 @@ function serviceList() {
     let html = '';
     data.map(item => {
         html += `<li class="service-item">
-              <div class="service-icon-box">
-                <img src="${item.img}
-                " alt="design icon" width="40">
-              </div>
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">${item.title}</h4>
-                <p class="service-item-text">
-                    ${item.description}
-                </p>
-              </div>
-            </li>`
+                    <div class="service-icon-box">
+                      <img src="${item.img}
+                      " alt="design icon" width="40">
+                    </div>
+                    <div class="service-content-box">
+                      <h4 class="h4 service-item-title">${item.title}</h4>
+                      <p class="service-item-text">
+                          ${item.description}
+                      </p>
+                    </div>
+                  </li>`
     })
 
     $('.service-list').html(html)
 }
 
 function education() {
-
+  
+  
     data = [{
         name: `University Dr. Soetomo, Surabaya (Computer Science)`,
         tahun: `2018 — 2022`,
         description: `
         <ul class="timeline-text">
-            <li>Developed a Final Project Management Application using CodeIgniter 4 and MySQL to assist students with their final projects.</li>
-            <li>Conducted final project research by developing an Augmented Reality application for introducing the environment of Purwosari 1 Elementary School Bojonegoro using the Markerless User Defined Target method.</li>
+            <li>Developed a Final Project Management Application using CodeIgniter 4 and MySQL to help students efficiently manage and track their final project progress.</li>
+            <li>Conducted research for the final project by creating an Augmented Reality application to introduce the environment of Purwosari 1 Elementary School in Bojonegoro, utilizing the Markerless User Defined Target method.</li>
         </ul>
         `
     }, 
@@ -819,52 +826,55 @@ integrations.</li>
         tahun: `2023 — Now`,
         description: `
         <ul class="timeline-text">
-            <li>Converting designs into functional code.</li>
-            <li>Developing responsive user interfaces.</li>
-            <li>Optimizing web interfaces for performance and usability.</li>
-            <li>Enhancing interactivity in user interfaces.</li>
-            <li>Implement RESTful APIs and integrate with various third-party services.</li>
-            <li>Managing time effectively to meet deadlines.</li>
-            <li>Collaborating with managers, developers, analysts, and other engineering teams to improve 
-application performance, reliability, code quality and consistency, delivery. </li>
+            <li>Transforming designs into high-quality, functional code for production.</li>
+            <li>Building and maintaining responsive, user-friendly web interfaces.</li>
+            <li>Optimizing web performance to ensure fast loading times and seamless user experiences.</li>
+            <li>Implementing dynamic and interactive features to enhance user engagement.</li>
+            <li>Integrating RESTful APIs and third-party services to enable robust functionality.</li>
+            <li>Effectively prioritizing tasks and managing time to meet project deadlines.</li>
+            <li>Collaborating cross-functionally with managers, developers, analysts, and engineering teams to improve application performance, ensure code quality, and deliver consistent, reliable solutions.</li>
         </ul>`,
         // description: mgeUpdatePortfolio,
-    }, {
-        name: `Nuri - UI/UX Designer (Internship)`,
-        tahun: `2022`,
-        description: `
-        Solving cash on delivery issues in the E-Commerce application.
-        <ul class="timeline-text">
-            <li>Learning Google Analytics.</li>
-            <li>Conducting User and Competitor Research.</li>
-            <li>Creating User Flow and Information Architecture.</li>
-            <li>Creating Wireframes.</li>
-            <li>Creating Visual Design Prototyping.</li>
-        </ul>`
-    }, {
-        name: `Toko Amanah - UI/UX Designer (Internship)`,
-        tahun: `2022`,
-        description: `
-        Resolving business digitalization issues, in the form of an application to check the availability of goods and adding a payment feature to the Toko Amanah application.
-        <ul class="timeline-text">
-            <li>Conducting Competitor Research.</li>
-            <li>Creating User Flow.</li>
-            <li>Creating Card Sorting.</li>
-            <li>Creating Information Architecture.</li>
-            <li>Creating Wireframes.</li>
-            <li>Creating Visual Design.</li>
-            <li>Conducting Usability Testing.</li>
-        </ul>`
-    }, {
+    }, 
+    
+    // {
+    //     name: `Nuri - UI/UX Designer (Internship)`,
+    //     tahun: `2022`,
+    //     description: `
+    //     Solving cash on delivery issues in the E-Commerce application.
+    //     <ul class="timeline-text">
+    //         <li>Learning Google Analytics.</li>
+    //         <li>Conducting User and Competitor Research.</li>
+    //         <li>Creating User Flow and Information Architecture.</li>
+    //         <li>Creating Wireframes.</li>
+    //         <li>Creating Visual Design Prototyping.</li>
+    //     </ul>`
+    // }, {
+    //     name: `Toko Amanah - UI/UX Designer (Internship)`,
+    //     tahun: `2022`,
+    //     description: `
+    //     Resolving business digitalization issues, in the form of an application to check the availability of goods and adding a payment feature to the Toko Amanah application.
+    //     <ul class="timeline-text">
+    //         <li>Conducting Competitor Research.</li>
+    //         <li>Creating User Flow.</li>
+    //         <li>Creating Card Sorting.</li>
+    //         <li>Creating Information Architecture.</li>
+    //         <li>Creating Wireframes.</li>
+    //         <li>Creating Visual Design.</li>
+    //         <li>Conducting Usability Testing.</li>
+    //     </ul>`
+    // }, 
+    
+    {
         name: `Universitas Dr.Soetomo - Fulstack Web Developer (Internship)`,
         tahun: `2021 - 2022`,
         description: `
+        Creating a web-based information system for the guidance and final project defense process using Codeigniter 4 and MySQL.
         <ul class="timeline-text">
-            <li>Responsible to creating a web-based information system for the guidance and final project defense process using Codeigniter 4.</li>
-            <li>Responsible to creating the database flow in the thesis system process.</li>
-            <li>Responsible to managing the front end of the system.</li>
-            <li>Responsible to managing the back end of the system.</li>
-            <li>Responsible for reporting any progress to the field supervisor.</li>
+            <li>Developed a web-based information system for managing guidance and final project defense processes using CodeIgniter 4 and MySQL.</li>
+            <li>Designed and implemented database workflows to streamline the thesis process.</li>
+            <li>Managed and optimized the front-end interface to ensure a seamless user experience.</li>
+            <li>Built and maintained back-end functionalities to support reliable and efficient system operations.</li>
         </ul>`
     },]
 
@@ -884,7 +894,14 @@ application performance, reliability, code quality and consistency, delivery. </
 }
 
 function portfolio() {
-    data = [{
+    data = [
+    {
+            sourceGambar: './assets/images/new_asset/smart link.jpg',
+            judul: 'Smart Link',
+            href: '#',
+            onHover: 'Smart Link',
+            category: 'web development'
+        },{
             sourceGambar: './assets/images/new_asset/e-money.jpg',
             judul: 'E-Money Custom',
             href: '#',
@@ -1013,8 +1030,8 @@ function portfolio() {
 function setSklilss(){
   data = [
         {
-            image: './assets/images/skills/react.png',
-            name: 'React Js',
+            image: './assets/images/skills/next.png',
+            name: 'Next Js',
         },{
             image: './assets/images/skills/vue.png',
             name: 'Vue Js',

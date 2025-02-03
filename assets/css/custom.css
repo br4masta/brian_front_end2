@@ -1,14 +1,19 @@
-    .avatar-box img{
+.avatar-box img{
         background-color: #7C7B7B;
         border-radius: 30px;
     }
 
-  .experience ul li::before {
+  .experience ul li::before, .education ul li::before {
             content: '•'; /* Menambahkan titik */
-            color: #fff; /* Warna titik */
+            color: inherit; /* This will inherit from parent text color */
             font-size: 20px; /* Ukuran titik */
             margin-right: 10px; /* Jarak antara titik dan teks */
         }
+
+.light-mode .experience ul li::before,
+.light-mode .education ul li::before {
+  color: var(--white-1); /* Use the dark text color in light mode */
+}
 
     @media (max-width:720px) {
         .avatar-box img{

@@ -1,4 +1,3 @@
-
 function serviceList() {
     data = [{
         img: `./assets/images/icon-dev.svg`,
@@ -256,6 +255,68 @@ function portfolio() {
 
 }
 
+function loadBlogPosts() {
+    const dummyPosts = [
+        {
+            title: "Understanding Modern Web Architecture",
+            description: "An in-depth look at how modern web applications are structured and why it matters for performance and scalability.",
+            date: "Mar 15, 2024",
+            readTime: "5 min read",
+            image: "./assets/images/blog-1.jpg",
+            category: "Web Development",
+            link: "#"
+        },
+        {
+            title: "Best Practices for React Components",
+            description: "Learn how to structure your React components for maximum reusability and maintainability.",
+            date: "Mar 10, 2024",
+            readTime: "7 min read",
+            image: "./assets/images/blog-2.jpg",
+            category: "React",
+            link: "#"
+        },
+        {
+            title: "CSS Tips for Better Responsive Design",
+            description: "Practical tips and tricks for creating truly responsive websites that work across all devices.",
+            date: "Mar 5, 2024",
+            readTime: "4 min read",
+            image: "./assets/images/blog-3.jpg",
+            category: "CSS",
+            link: "#"
+        }
+    ];
+
+    let html = '';
+    dummyPosts.forEach(post => {
+        html += `
+        <li class="blog-post-item">
+            <a href="${post.link}">
+                <figure class="blog-banner-box">
+                    <img src="${post.image}" alt="${post.title}" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <p class="blog-category">${post.category}</p>
+                        <span class="dot"></span>
+                        <time datetime="${post.date}">${post.date}</time>
+                        <span class="dot"></span>
+                        <span class="read-time">${post.readTime}</span>
+                    </div>
+
+                    <h3 class="h3 blog-item-title">${post.title}</h3>
+
+                    <p class="blog-text">
+                        ${post.description}
+                    </p>
+                </div>
+            </a>
+        </li>`;
+    });
+
+    $('.blog-posts-list').html(html);
+}
+
 $(document).ready(function () {
     console.log('tes')
     serviceList()
@@ -263,5 +324,5 @@ $(document).ready(function () {
     expericeList()
     portfolio()
     setInterac()
-
+    loadBlogPosts();
 });
