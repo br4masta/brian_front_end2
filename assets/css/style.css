@@ -712,7 +712,7 @@ main {
 .service-item-title { margin-bottom: 7px; }
 
 .service-item-text {
-  color: var(--light-gray);
+  color: var (--light-gray);
   font-size: var (--fs-6);
   font-weight: var (--fw-3);
   line-height: 1.6;
@@ -760,7 +760,7 @@ main {
 
 .testimonials-text {
   color: var(--light-gray);
-  font-size: var(--fs-6);
+  font-size: var (--fs-6);
   font-weight: var (--fw-300);
   line-height: 1.6;
   display: -webkit-box;
@@ -858,6 +858,49 @@ main {
 
 .modal-close-btn ion-icon { --ionicon-stroke-width: 50px; }
 
+/* Enhanced Modal Close Button */
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--eerie-black-2);
+  border: 1px solid var(--jet);
+  color: var(--orange-yellow-crayola);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.modal-close-btn:hover {
+  background: var(--orange-yellow-crayola);
+  color: var(--eerie-black-2);
+  transform: rotate(90deg);
+}
+
+.modal-close-btn ion-icon {
+  --ionicon-stroke-width: 50px;
+  font-size: 20px;
+}
+
+/* Light mode adjustments */
+.light-mode .modal-close-btn {
+  background: var(--jet);
+  color: var(--white-2);
+  border-color: var(--light-gray);
+}
+
+.light-mode .modal-close-btn:hover {
+  background: var(--orange-yellow-crayola);
+  color: var(--eerie-black-2);
+}
+
 .modal-avatar-box {
   background: var(--bg-gradient-onyx);
   width: max-content;
@@ -882,6 +925,53 @@ main {
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
   line-height: 1.6;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--border-gradient-onyx);
+    color: var(--orange-yellow-crayola);
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10;
+    transition: var(--transition-1);
+}
+
+.modal-close:hover {
+    background: var(--orange-yellow-crayola);
+    color: var(--eerie-black-1);
+}
+
+.modal-close-x {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--eerie-black-2);
+    color: var(--orange-yellow-crayola);
+    font-size: 20px;
+    cursor: pointer;
+    transition: var(--transition-1);
+    border: 1px solid var(--jet);
+    z-index: 10;
+}
+
+.modal-close-x:hover {
+    background: var(--orange-yellow-crayola);
+    color: var(--eerie-black-2);
 }
 
 
@@ -1352,7 +1442,7 @@ main {
 }
 
 .dot.active {
-    background: var(--orange-yellow-crayola);
+    background: var (--orange-yellow-crayola);
 }
 
 
@@ -2262,7 +2352,7 @@ textarea.form-input::-webkit-resizer { display: none; }
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 4px solid var(--jet);
+  border: 4px solid var (--jet);
   border-top: 4px solid var(--orange-yellow-crayola);
   border-radius: 50%;
   width: 40px;

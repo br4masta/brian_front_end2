@@ -237,7 +237,7 @@
 
           <section class="testimonials-modal">
 
-            <button class="modal-close-btn" data-modal-close-btn>
+            <button class="modal-close-x close-modall" data-modal-close-btn>
               <ion-icon name="close-outline"></ion-icon>
             </button>
 
@@ -456,7 +456,7 @@
           <!-- Add Portfolio Modal -->
           <div class="portfolio-modal" id="portfolioModal">
             <div class="modal-content">
-              <span class="close-modal">&times;</span>
+              <span class="modal-close-x">&times;</span>
               <div class="modal-body">
                 <h2 class="modal-title"></h2>
                 
@@ -1024,19 +1024,46 @@ function portfolio() {
             judul: 'Sistem Informasi Manajemen Tugas Akhir',
             href: 'https://brianaldybramasta.wixsite.com/brianbramasta/siteminformasimanajementugasakhir',
             onHover: 'Sistem Informasi Manajemen Tugas Akhir',
-            category: 'web development'
+            category: 'web development',
+            modalContent: { 
+              images: [
+                    './assets/images/new_asset/si.jpg',
+                    // Add more images if needed
+                ],
+              role: 'Frontend Developer',
+              description: '-',
+              skills: ['CodeIgniter4', 'JavaScript', 'HTML/CSS']
+            }
         }, {
             sourceGambar: './assets/images/new_asset/tokoamanah.jpg',
             judul: 'Toko Amanah',
             href: 'https://brianaldybramasta.wixsite.com/brianbramasta/toko-amanah',
             onHover: 'UI and UX Design Toko Amanah',
             category: 'ui/ux'
+            , modalContent: { 
+              images: [
+                    './assets/images/new_asset/tokoamanah.jpg',
+                    // Add more images if needed
+                ],
+              role: 'UI and UX Designer',
+              description: '-',
+              skills: ['UX Researcher', 'Prototyping', 'User Testing']
+            }
         }, {
             sourceGambar: './assets/images/new_asset/nuri.png',
             judul: 'UX Design PT Nuri',
             href: 'https://brianaldybramasta.wixsite.com/brianbramasta/cashondelivery',
             onHover: 'UI and UX Design Toko Amanah',
             category: 'ui/ux'
+            , modalContent: { 
+              images: [
+                    './assets/images/new_asset/nuri.png',
+                    // Add more images if needed
+                ],
+              role: 'UI and UX Designer',
+              description: '-',
+              skills: ['UX Researcher', 'Visual Design', 'Prototyping']
+            }
         }
         // {
         //     sourceGambar: './assets/images/new_asset/movie search.jpg',
@@ -1075,54 +1102,81 @@ function portfolio() {
         console.log('Project Data:', projectData); // Debug log
         
         if (projectData && projectData.modalContent) {
-            // Populate modal with project specific content
-            $('#portfolioModal .modal-title').text(projectData.judul);
-            
-            // Handle images - Create carousel if multiple images
-            const images = projectData.modalContent.images;
-            let galleryHTML = `
-                <div class="carousel-container">
-                    <div class="carousel-track">
-                        ${images.map((img, i) => `
-                            <div class="carousel-slide ${i === 0 ? 'active' : ''}">
-                                <img src="${img}" alt="Project screenshot">
+            let modalContent = `
+                <div class="modal-content">
+                    <button class="modal-close-x" aria-label="Close modal">
+                        <ion-icon name="close-outline"></ion-icon>
+                    </button>
+                    <div class="modal-body">
+                        <h2 class="modal-title">${projectData.judul}</h2>
+                        
+                        <div class="modal-image-gallery">
+                            <div class="carousel-container">
+                                <div class="carousel-track">
+                                    ${projectData.modalContent.images.map((img, i) => `
+                                        <div class="carousel-slide ${i === 0 ? 'active' : ''}">
+                                            <img src="${img}" alt="Project screenshot">
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                ${projectData.modalContent.images.length > 1 ? `
+                                    <div class="carousel-nav">
+                                        <div class="carousel-btn prev">
+                                            <ion-icon name="chevron-back-outline"></ion-icon>
+                                        </div>
+                                        <div class="carousel-btn next">
+                                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-dots">
+                                        ${projectData.modalContent.images.map((_, i) => `
+                                            <div class="dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>
+                                        `).join('')}
+                                    </div>
+                                ` : ''}
                             </div>
-                        `).join('')}
+                        </div>
+
+                        <div class="project-details">
+                            <div class="detail-section">
+                                <h3>Role</h3>
+                                <p class="project-role">${projectData.modalContent.role}</p>
+                            </div>
+
+                            <div class="detail-section">
+                                <h3>Project Description</h3>
+                                <p class="project-description">${projectData.modalContent.description}</p>
+                            </div>
+
+                            <div class="detail-section">
+                                <h3>Skills & Deliverables</h3>
+                                <ul class="project-skills">
+                                    ${projectData.modalContent.skills.map(skill => `<li>${skill}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    ${images.length > 1 ? `
-                        <div class="carousel-nav">
-                            <div class="carousel-btn prev">
-                                <ion-icon name="chevron-back-outline"></ion-icon>
-                            </div>
-                            <div class="carousel-btn next">
-                                <ion-icon name="chevron-forward-outline"></ion-icon>
-                            </div>
-                        </div>
-                        <div class="carousel-dots">
-                            ${images.map((_, i) => `
-                                <div class="dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>
-                            `).join('')}
-                        </div>
-                    ` : ''}
                 </div>
             `;
             
-            $('.modal-image-gallery').html(galleryHTML);
+            $('#portfolioModal').html(modalContent).fadeIn(300);
             
-            // Handle other details
-            $('.project-role').text(projectData.modalContent.role);
-            $('.project-description').text(projectData.modalContent.description);
-            
-            let skillsHTML = '';
-            projectData.modalContent.skills.forEach(skill => {
-                skillsHTML += `<li>${skill}</li>`;
-            });
-            $('.project-skills').html(skillsHTML);
-            
-            // Initialize carousel handlers if multiple images
-            if (images.length > 1) {
+            // Initialize carousel if multiple images
+            if (projectData.modalContent.images.length > 1) {
                 initCarousel();
             }
+            
+            // Close modal handlers
+            $('#modalClose, #portfolioModal').on('click', function(e) {
+                if (e.target === this) {
+                    $('#portfolioModal').fadeOut(300);
+                }
+            });
+            
+            // Prevent modal from closing when clicking inside
+            $('.modal-content').on('click', function(e) {
+                e.stopPropagation();
+            });
         } else {
             // Fallback content if modalContent is not defined
             $('#portfolioModal .modal-title').text(projectData.judul);
@@ -1134,12 +1188,14 @@ function portfolio() {
         
         // Show modal
         $('#portfolioModal').fadeIn(300);
-    });
-
-    // Close modal events
-    $('.close-modal').on('click', function() {
+        $('.modal-close-x').on('click', function() {
         $('#portfolioModal').fadeOut(300);
     });
+    });
+
+   
+
+    
 
     $(window).on('click', function(e) {
         if ($(e.target).is('#portfolioModal')) {
