@@ -453,6 +453,37 @@
 
           </ul>
 
+          <!-- Add Portfolio Modal -->
+          <div class="portfolio-modal" id="portfolioModal">
+            <div class="modal-content">
+              <span class="close-modal">&times;</span>
+              <div class="modal-body">
+                <h2 class="modal-title"></h2>
+                
+                <div class="modal-image-gallery">
+                  <!-- Images will be inserted here -->
+                </div>
+
+                <div class="project-details">
+                  <div class="detail-section">
+                    <h3>Role</h3>
+                    <p class="project-role"></p>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Project Description</h3>
+                    <p class="project-description"></p>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Skills & Deliverables</h3>
+                    <ul class="project-skills"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </section>
 
       </article>
@@ -892,21 +923,30 @@ integrations.</li>
     $('.experience').html(html)
 
 }
-
+let dataPortfolio = []
 function portfolio() {
     data = [
     {
             sourceGambar: './assets/images/new_asset/smart link.jpg',
             judul: 'Smart Link',
-            href: '#',
-            onHover: 'Smart Link',
-            category: 'web development'
-        },{
+            category: 'web development',
+            modalContent: {
+                images: [
+                    './assets/images/new_asset/smart link.jpg',
+                    // Add more images if needed
+                ],
+                role: 'Frontend Developer',
+                description: 'A comprehensive smart link management system built with Vue.js and Quasar Framework. This application allows users to create, manage, and track multiple links in one place.',
+                skills: ['Vue.js', 'Quasar', 'REST API', 'JavaScript', 'HTML/CSS']
+            }
+        },
+        {
             sourceGambar: './assets/images/new_asset/e-money.jpg',
             judul: 'E-Money Custom',
             href: '#',
             onHover: 'E-Money Custom',
-            category: 'web development'
+            category: 'web development',
+          
         },
         {
             sourceGambar: './assets/images/new_asset/service desk.png',
@@ -1006,15 +1046,16 @@ function portfolio() {
         // }
     ]
 
+    dataPortfolio = data
     let html = '';
-    data.map(item => {
-        html += `<li class="project-item  active" data-filter-item data-category="${item.category}">
-              <a href="${item.href}" target="_blank">
+    data.map((item, index) => {
+        html += `<li class="project-item active" data-filter-item data-category="${item.category}" data-project-index="${index}">
+              <a href="javascript:void(0)" class="project-link">
                 <figure class="project-img">
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
-                  <img src="${item.sourceGambar}" alt="finance" loading="lazy" style="height: 145.859px;
+                  <img src="${item.sourceGambar}" alt="${item.judul}" loading="lazy" style="height: 145.859px;
                     object-fit: contain;">
                 </figure>
                 <h3 class="project-title">${item.judul}</h3>
@@ -1025,6 +1066,148 @@ function portfolio() {
 
     $('.project-list').html(html)
 
+    // Add click event handlers
+    $('.project-list').on('click', '.project-link', function(e) {
+        e.preventDefault();
+        const index = $(this).closest('.project-item').data('project-index');
+        const projectData = dataPortfolio[index];
+        
+        console.log('Project Data:', projectData); // Debug log
+        
+        if (projectData && projectData.modalContent) {
+            // Populate modal with project specific content
+            $('#portfolioModal .modal-title').text(projectData.judul);
+            
+            // Handle images - Create carousel if multiple images
+            const images = projectData.modalContent.images;
+            let galleryHTML = `
+                <div class="carousel-container">
+                    <div class="carousel-track">
+                        ${images.map((img, i) => `
+                            <div class="carousel-slide ${i === 0 ? 'active' : ''}">
+                                <img src="${img}" alt="Project screenshot">
+                            </div>
+                        `).join('')}
+                    </div>
+                    ${images.length > 1 ? `
+                        <div class="carousel-nav">
+                            <div class="carousel-btn prev">
+                                <ion-icon name="chevron-back-outline"></ion-icon>
+                            </div>
+                            <div class="carousel-btn next">
+                                <ion-icon name="chevron-forward-outline"></ion-icon>
+                            </div>
+                        </div>
+                        <div class="carousel-dots">
+                            ${images.map((_, i) => `
+                                <div class="dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+            
+            $('.modal-image-gallery').html(galleryHTML);
+            
+            // Handle other details
+            $('.project-role').text(projectData.modalContent.role);
+            $('.project-description').text(projectData.modalContent.description);
+            
+            let skillsHTML = '';
+            projectData.modalContent.skills.forEach(skill => {
+                skillsHTML += `<li>${skill}</li>`;
+            });
+            $('.project-skills').html(skillsHTML);
+            
+            // Initialize carousel handlers if multiple images
+            if (images.length > 1) {
+                initCarousel();
+            }
+        } else {
+            // Fallback content if modalContent is not defined
+            $('#portfolioModal .modal-title').text(projectData.judul);
+            $('.modal-image-gallery').html(`<img src="${projectData.sourceGambar}" alt="Project screenshot">`);
+            $('.project-role').text('Frontend Developer');
+            $('.project-description').text(projectData.onHover || 'Project details not available.');
+            $('.project-skills').html('<li>HTML</li><li>CSS</li><li>JavaScript</li>');
+        }
+        
+        // Show modal
+        $('#portfolioModal').fadeIn(300);
+    });
+
+    // Close modal events
+    $('.close-modal').on('click', function() {
+        $('#portfolioModal').fadeOut(300);
+    });
+
+    $(window).on('click', function(e) {
+        if ($(e.target).is('#portfolioModal')) {
+            $('#portfolioModal').fadeOut(300);
+        }
+    });
+}
+
+// Add carousel functionality
+function initCarousel() {
+    let currentSlide = 0;
+    const track = $('.carousel-track');
+    const slides = $('.carousel-slide');
+    const dots = $('.dot');
+    const totalSlides = slides.length;
+
+    function updateCarousel(newIndex, direction = 'next') {
+        const currentTransform = direction === 'next' ? 100 : -100;
+        
+        // Animate slide transition
+        slides.eq(currentSlide).css({
+            'transform': `translateX(${-currentTransform}%)`,
+            'opacity': '0',
+            'transition': 'transform 0.5s ease-in-out, opacity 0.3s ease-in-out'
+        });
+        
+        slides.eq(newIndex).css({
+            'transform': 'translateX(0)',
+            'opacity': '1',
+            'transition': 'transform 0.5s ease-in-out, opacity 0.3s ease-in-out'
+        });
+
+        // Update active states
+        slides.removeClass('active');
+        dots.removeClass('active');
+        slides.eq(newIndex).addClass('active');
+        dots.eq(newIndex).addClass('active');
+        
+        currentSlide = newIndex;
+    }
+
+    // Next button click
+    $('.carousel-btn.next').click(() => {
+        const nextSlide = (currentSlide + 1) % totalSlides;
+        updateCarousel(nextSlide, 'next');
+    });
+
+    // Previous button click
+    $('.carousel-btn.prev').click(() => {
+        const prevSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateCarousel(prevSlide, 'prev');
+    });
+
+    // Dot click
+    $('.dot').click(function() {
+        const newIndex = $(this).data('index');
+        const direction = newIndex > currentSlide ? 'next' : 'prev';
+        updateCarousel(newIndex, direction);
+    });
+
+    // Initialize first slide
+    slides.css({
+        'position': 'absolute',
+        'left': '0',
+        'top': '0',
+        'width': '100%'
+    });
+    slides.eq(0).addClass('active').css('opacity', '1');
 }
 
 function setSklilss(){
