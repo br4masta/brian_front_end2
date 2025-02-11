@@ -503,6 +503,15 @@
             <div id="medium-articles" class="articles-slider">
               <!-- Articles will be loaded here dynamically -->
             </div>
+            <div class="pagination">
+              <button class="pagination-btn prev" disabled>
+                <ion-icon name="chevron-back-outline"></ion-icon>
+              </button>
+              <div class="pagination-numbers"></div>
+              <button class="pagination-btn next">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+              </button>
+            </div>
           </div>
         </section>
 
@@ -595,8 +604,60 @@
 
           @media (max-width: 580px) {
             .article-card {
-              flex: 0 0 260px;
+              flex: 0 0 360px;
             }
+          }
+          
+          .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            gap: 10px;
+          }
+
+          .pagination-btn {
+            background: var(--modal-bg);
+            border: 1px solid var(--border-primary);
+            color: var(--light-gray);
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+          }
+
+          .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
+
+          .pagination-btn:not(:disabled):hover {
+            background: var(--orange);
+            color: white;
+          }
+
+          .pagination-numbers {
+            display: flex;
+            gap: 5px;
+          }
+
+          .page-number {
+            background: var(--modal-bg);
+            border: 1px solid var(--border-primary);
+            color: var(--light-gray);
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+          }
+
+          .page-number.active {
+            background: var(--orange);
+            color: white;
+          }
+
+          .page-number:hover:not(.active) {
+            background: var(--border-primary);
           }
         </style>
       </article>
@@ -1274,45 +1335,20 @@ $(document).ready(function () {
 function loadMediumArticles() {
   const mediumUsername = '@brianaldybramasta';
   const rssUrl = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/${mediumUsername}`;
+  const articlesPerPage = 5;
+  let currentPage = 1;
+  let allArticles = [];
 
   fetch(rssUrl)
     .then(response => response.json())
     .then(data => {
-      const articles = data.items;
-      const articlesContainer = document.getElementById('medium-articles');
-      let html = '';
-
-      articles.forEach(article => {
-        // Extract first image from content or use default
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = article.content;
-        const firstImage = tempDiv.querySelector('img');
-        const imageUrl = firstImage ? firstImage.src : './assets/images/default-article.jpg';
-
-        // Format date
-        const pubDate = new Date(article.pubDate);
-        const formattedDate = pubDate.toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric'
-        });
-
-        // Create article card
-        html += `
-          <div class="article-card">
-            <img src="${imageUrl}" alt="${article.title}" class="article-image">
-            <div class="article-content">
-              <h3 class="article-title">${article.title}</h3>
-              <div class="article-footer">
-                <a href="${article.link}" target="_blank" class="article-link">Read More →</a>
-                <p class="article-date">${formattedDate}</p>
-              </div>
-            </div>
-          </div>
-        `;
-      });
-
-      articlesContainer.innerHTML = html;
+      allArticles = data.items;
+      const totalPages = Math.ceil(allArticles.length / articlesPerPage);
+      
+      // Initialize pagination
+      setupPagination(totalPages);
+      // Show first page
+      displayArticles(currentPage);
     })
     .catch(error => {
       console.error('Error fetching Medium articles:', error);
@@ -1324,6 +1360,96 @@ function loadMediumArticles() {
         </div>
       `;
     });
+
+  function displayArticles(page) {
+    const start = (page - 1) * articlesPerPage;
+    const end = start + articlesPerPage;
+    const paginatedArticles = allArticles.slice(start, end);
+    
+    const articlesContainer = document.getElementById('medium-articles');
+    let html = '';
+
+    paginatedArticles.forEach(article => {
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = article.content;
+      const firstImage = tempDiv.querySelector('img');
+      const imageUrl = firstImage ? firstImage.src : './assets/images/default-article.jpg';
+
+      const pubDate = new Date(article.pubDate);
+      const formattedDate = pubDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      });
+
+      html += `
+        <div class="article-card">
+          <img src="${imageUrl}" alt="${article.title}" class="article-image">
+          <div class="article-content">
+            <h3 class="article-title">${article.title}</h3>
+            <div class="article-footer">
+              <a href="${article.link}" target="_blank" class="article-link">Read More →</a>
+              <p class="article-date">${formattedDate}</p>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+    articlesContainer.innerHTML = html;
+    updatePaginationState(page);
+  }
+
+  function setupPagination(totalPages) {
+    const paginationNumbers = document.querySelector('.pagination-numbers');
+    const prevBtn = document.querySelector('.pagination-btn.prev');
+    const nextBtn = document.querySelector('.pagination-btn.next');
+    
+    // Generate page numbers
+    let numbersHtml = '';
+    for (let i = 1; i <= totalPages; i++) {
+      numbersHtml += `<button class="page-number ${i === 1 ? 'active' : ''}" data-page="${i}">${i}</button>`;
+    }
+    paginationNumbers.innerHTML = numbersHtml;
+
+    // Add event listeners
+    paginationNumbers.addEventListener('click', (e) => {
+      if (e.target.classList.contains('page-number')) {
+        currentPage = parseInt(e.target.dataset.page);
+        displayArticles(currentPage);
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        displayArticles(currentPage);
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        displayArticles(currentPage);
+      }
+    });
+  }
+
+  function updatePaginationState(page) {
+    const totalPages = Math.ceil(allArticles.length / articlesPerPage);
+    const prevBtn = document.querySelector('.pagination-btn.prev');
+    const nextBtn = document.querySelector('.pagination-btn.next');
+    const pageNumbers = document.querySelectorAll('.page-number');
+
+    // Update prev/next buttons
+    prevBtn.disabled = page === 1;
+    nextBtn.disabled = page === totalPages;
+
+    // Update active page number
+    pageNumbers.forEach(btn => {
+      btn.classList.toggle('active', parseInt(btn.dataset.page) === page);
+    });
+  }
 }
   </script>
 
