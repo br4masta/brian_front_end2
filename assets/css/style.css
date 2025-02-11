@@ -712,7 +712,7 @@ main {
 .service-item-title { margin-bottom: 7px; }
 
 .service-item-text {
-  color: var (--light-gray);
+  color: var(--light-gray);
   font-size: var (--fs-6);
   font-weight: var (--fw-3);
   line-height: 1.6;
@@ -1017,7 +1017,7 @@ main {
   #RESUME
 \*-----------------------------------*/
 
-.article-title { margin-bottom: 30px; }
+.article-title { margin-bottom: 30px;  color: var(--light-gray); }
 
 
 /**

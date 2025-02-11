@@ -188,6 +188,10 @@
           </li>
 
           <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Article</button>
+          </li>
+
+          <li class="navbar-item">
             <button class="navbar-link" data-nav-link>Contact</button>
           </li>
 
@@ -488,201 +492,114 @@
 
       </article>
 
-
-
-
-
-      <!--
-        - #BLOG
-      -->
-
-      <article class="blog" data-page="blog">
-
+      <!-- Add this section before the Contact article -->
+      <article class="article" data-page="article">
         <header>
-          <h2 class="h2 article-title">Blog</h2>
+          <h2 class="h2 article-title">My Articles</h2>
         </header>
 
-        <section class="blog-posts">
-
-          <ul class="blog-posts-list">
-
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-1.jpg" alt="Design conferences in 2022" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Design conferences in 2022</h3>
-
-                  <p class="blog-text">
-                    Veritatis et quasi architecto beatae vitae dicta sunt, explicabo.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-2.jpg" alt="Best fonts every designer" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Best fonts every designer</h3>
-
-                  <p class="blog-text">
-                    Sed ut perspiciatis, nam libero tempore, cum soluta nobis est eligendi.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-3.jpg" alt="Design digest #80" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Design digest #80</h3>
-
-                  <p class="blog-text">
-                    Excepteur sint occaecat cupidatat no proident, quis nostrum exercitationem ullam corporis suscipit.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-4.jpg" alt="UI interactions of the week" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">UI interactions of the week</h3>
-
-                  <p class="blog-text">
-                    Enim ad minim veniam, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-5.jpg" alt="The forgotten art of spacing" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">The forgotten art of spacing</h3>
-
-                  <p class="blog-text">
-                    Maxime placeat, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-6.jpg" alt="Design digest #79" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Design digest #79</h3>
-
-                  <p class="blog-text">
-                    Optio cumque nihil impedit uo minus quod maxime placeat, velit esse cillum.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-          </ul>
-
+        <section class="article-feed">
+          <div class="articles-wrapper">
+            <div id="medium-articles" class="articles-slider">
+              <!-- Articles will be loaded here dynamically -->
+            </div>
+          </div>
         </section>
 
+        <style>
+          .articles-wrapper {
+            position: relative;
+            overflow-x: auto;
+            padding: 20px 0;
+            /* Hide scrollbar for IE, Edge and Firefox */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+
+          /* Hide scrollbar for Chrome, Safari and Opera */
+          .articles-wrapper::-webkit-scrollbar {
+            display: none;
+          }
+
+          .articles-slider {
+            display: flex;
+            gap: 20px;
+            padding: 10px 5px;
+            flex-direction: column;
+          }
+          
+          .article-card {
+            flex: 0 0 300px;
+            background: var(--modal-bg);
+            border: 1px solid var(--border-primary);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+          }
+          
+          .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+          }
+          
+          .article-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+          }
+          
+          .article-content {
+            padding: 15px;
+          }
+          
+          .article-title {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: var(--light-gray);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+          .article-footer{
+            color: var(--light-gray);
+          }
+          
+          .article-description {
+            font-size: 0.9em;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+          
+          .article-link {
+            display: inline-block;
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: auto;
+          }
+          
+          .article-link:hover {
+            text-decoration: underline;
+          }
+          
+          .article-date {
+            font-size: 0.8em;
+            color: var(--text-light);
+            margin-top: 10px;
+          }
+
+          @media (max-width: 580px) {
+            .article-card {
+              flex: 0 0 260px;
+            }
+          }
+        </style>
       </article>
-
-
-
-
 
       <!--
         - #CONTACT
@@ -1351,8 +1268,63 @@ $(document).ready(function () {
     portfolio()
     setInterac()
     setSklilss()
-
+    loadMediumArticles() // Add this line
 });
+
+function loadMediumArticles() {
+  const mediumUsername = '@brianaldybramasta';
+  const rssUrl = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/${mediumUsername}`;
+
+  fetch(rssUrl)
+    .then(response => response.json())
+    .then(data => {
+      const articles = data.items;
+      const articlesContainer = document.getElementById('medium-articles');
+      let html = '';
+
+      articles.forEach(article => {
+        // Extract first image from content or use default
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = article.content;
+        const firstImage = tempDiv.querySelector('img');
+        const imageUrl = firstImage ? firstImage.src : './assets/images/default-article.jpg';
+
+        // Format date
+        const pubDate = new Date(article.pubDate);
+        const formattedDate = pubDate.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        });
+
+        // Create article card
+        html += `
+          <div class="article-card">
+            <img src="${imageUrl}" alt="${article.title}" class="article-image">
+            <div class="article-content">
+              <h3 class="article-title">${article.title}</h3>
+              <div class="article-footer">
+                <a href="${article.link}" target="_blank" class="article-link">Read More →</a>
+                <p class="article-date">${formattedDate}</p>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      articlesContainer.innerHTML = html;
+    })
+    .catch(error => {
+      console.error('Error fetching Medium articles:', error);
+      document.getElementById('medium-articles').innerHTML = `
+        <div style="text-align: center; padding: 20px;">
+          <p>Failed to load articles. Please visit my 
+            <a href="https://medium.com/@brianaldybramasta" target="_blank" 
+               style="color: var(--orange);">Medium profile</a> directly.</p>
+        </div>
+      `;
+    });
+}
   </script>
 
 </body>
