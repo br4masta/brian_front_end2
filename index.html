@@ -356,7 +356,7 @@
           <h2 class="h2 article-title">Resume</h2>
         </header>
 
-        <a  href="https://drive.google.com/file/d/1Z9O2vK1BOwidKIk5ZQr2_dScouFU90eh/view?usp=sharing"
+        <a  href="https://drive.google.com/file/d/19qhAZJefgNY5LAmCAX1pRdOkAQyesBqV/view?usp=sharing"
         target='_blank'  class="form-btn resume-btn"  data-form-btn="">
           <span>Resume</span>
         </a>
@@ -834,6 +834,7 @@ integrations.</li>
         name: `Morning Glory Enteprise - Front End Developer`,
         tahun: `2023 — Now`,
         description: `
+        Developing high-quality UI for multiple vendor projects to ensure seamless user experiences and optimal performance.
         <ul class="timeline-text">
             <li>Transforming designs into high-quality, functional code for production.</li>
             <li>Building and maintaining responsive, user-friendly web interfaces.</li>
@@ -924,7 +925,24 @@ function portfolio() {
             href: '#',
             onHover: 'E-Money Custom',
             category: 'web development',
-          
+            modalContent: {
+                images: [
+                    './assets/images/new_asset/e-money.jpg',
+                    // Add more images if needed
+                ],
+                role: 'Frontend Developer',
+                description: 'A responsive and interactive e-money management platform built with Vue.js and Quasar Framework. This system allows users to manage transactions, track orders, and integrate with third-party services seamlessly.',
+                skills: [
+                    'Vue.js',
+                    'Quasar Framework',
+                    'JavaScript',
+                    'HTML/CSS',
+                    'REST API Integration',
+                    'State Management (Pinia/Vuex)',
+                    'Responsive UI Design',
+                    'Third-Party API Integration',
+                ]
+            }
         },
         {
             sourceGambar: './assets/images/new_asset/service desk.png',
@@ -937,18 +955,47 @@ function portfolio() {
             judul: 'Project Management - GKDI',
             href: 'https://brianaldybramasta.wixsite.com/brianbramasta/gkdi',
             onHover: 'MGMX',
-            category: 'web development'
+            category: 'web development',
+            modalContent: { 
+              images: [
+                    './assets/images/new_asset/gkid.jpg',
+                    // Add more images if needed
+                ],
+                role: 'Frontend Developer',
+                description: 'A specialized project management platform designed for GKDI church operations. Built with Vue.js and Quasar Framework, this system allows users to manage tasks, track project progress, and facilitate internal communication through chat and dashboards for streamlined church operations.',
+                skills: [
+                    'Vue.js',
+                    'Quasar Framework',
+                    'JavaScript',
+                    'HTML/CSS',
+                    'REST API Integration',
+                    'State Management (Pinia/Vuex)',
+                    'Responsive UI Design',
+                    'GitHub',
+                ],   
+              //   challenges: [
+              //     'Implementing real-time task tracking with Vue.js and WebSockets.',
+              //     'Optimizing performance for handling multiple simultaneous users.',
+              //     'Ensuring smooth integration with backend services (Express.js, Node.js).'
+              // ],
+              // achievements: [
+              //     'Successfully built an intuitive dashboard for streamlined project management.',
+              //     'Optimized front-end performance, reducing load time by 30%.',
+              //     'Improved UX by implementing a real-time chat feature for internal communication.'
+              // ]
+            }
+
         },  {
             sourceGambar: './assets/images/new_asset/plastik prima.jpg',
             judul: 'Plastik Prima',
             href: 'http://47.74.214.215:82/pabrik_plastik/auth',
-            onHover: 'MGMX',
+            onHover: 'Plastik Prima',
             category: 'web development'
         }, {
             sourceGambar: './assets/images/new_asset/absensi_yefta.jpg',
             judul: 'Absensi Karyawan',
             href: 'https://github.com/br4masta/absensi_yefta',
-            onHover: 'MGMX',
+            onHover: 'Absensi Karyawan',
             category: 'web development'
         },{
             sourceGambar: './assets/images/new_asset/MGMX.jpg',
@@ -1116,22 +1163,46 @@ function portfolio() {
                         </div>
 
                         <div class="project-details">
-                            <div class="detail-section">
-                                <h3>Role</h3>
-                                <p class="project-role">${projectData.modalContent.role}</p>
-                            </div>
+                            ${projectData.modalContent.role ? `
+                                <div class="detail-section">
+                                    <h3>Role</h3>
+                                    <p class="project-role">${projectData.modalContent.role}</p>
+                                </div>
+                            ` : ''}
 
-                            <div class="detail-section">
-                                <h3>Project Description</h3>
-                                <p class="project-description">${projectData.modalContent.description}</p>
-                            </div>
+                            ${projectData.modalContent.description ? `
+                                <div class="detail-section">
+                                    <h3>Project Description</h3>
+                                    <p class="project-description">${projectData.modalContent.description}</p>
+                                </div>
+                            ` : ''}
 
-                            <div class="detail-section">
-                                <h3>Skills & Deliverables</h3>
-                                <ul class="project-skills">
-                                    ${projectData.modalContent.skills.map(skill => `<li>${skill}</li>`).join('')}
-                                </ul>
-                            </div>
+                            ${projectData.modalContent.challenges ? `
+                                <div class="detail-section">
+                                    <h3>Challenges</h3>
+                                    <ul class="project-challenges">
+                                        ${projectData.modalContent.challenges.map(challenge => `<li>${challenge}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            ` : ''}
+
+                            ${projectData.modalContent.achievements ? `
+                                <div class="detail-section">
+                                    <h3>Achievements</h3>
+                                    <ul class="project-achievements">
+                                        ${projectData.modalContent.achievements.map(achievement => `<li>${achievement}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            ` : ''}
+
+                            ${projectData.modalContent.skills ? `
+                                <div class="detail-section">
+                                    <h3>Skills & Deliverables</h3>
+                                    <ul class="project-skills">
+                                        ${projectData.modalContent.skills.map(skill => `<li>${skill}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            ` : ''}
                         </div>
                     </div>
                 </div>
@@ -1156,12 +1227,30 @@ function portfolio() {
                 e.stopPropagation();
             });
         } else {
-            // Fallback content if modalContent is not defined
-            $('#portfolioModal .modal-title').text(projectData.judul);
-            $('.modal-image-gallery').html(`<img src="${projectData.sourceGambar}" alt="Project screenshot">`);
-            $('.project-role').text('Frontend Developer');
-            $('.project-description').text(projectData.onHover || 'Project details not available.');
-            $('.project-skills').html('<li>HTML</li><li>CSS</li><li>JavaScript</li>');
+            // Basic modal content for projects without modalContent
+            let modalContent = `
+                <div class="modal-content">
+                    <button class="modal-close-x" aria-label="Close modal">
+                        <ion-icon name="close-outline"></ion-icon>
+                    </button>
+                    <div class="modal-body">
+                        <h2 class="modal-title">${projectData.judul}</h2>
+                        
+                        <div class="modal-image-gallery">
+                            <img src="${projectData.sourceGambar}" alt="Project screenshot">
+                        </div>
+
+                        <div class="project-details">
+                            <div class="detail-section">
+                                <h3>Description</h3>
+                                <p class="project-description">${projectData.onHover || 'Project details not available.'}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            $('#portfolioModal').html(modalContent).fadeIn(300);
         }
         
         // Show modal

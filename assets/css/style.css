@@ -1358,8 +1358,19 @@ main {
   padding: 5px 15px;
   border-radius: 20px;
   font-size: 0.9em;
-  color: white;
+  color: var(--light-gray);
 }
+
+.project-challenges li,
+.project-achievements li{
+  color: var(--light-gray);
+}
+
+.project-challenges li::before,
+.project-achievements li::before{content: '•';
+  color: inherit;
+  font-size: 20px;
+  margin-right: 10px;}
 
 /* Modal Carousel Styles */
 .modal-image-gallery {
