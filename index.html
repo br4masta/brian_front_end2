@@ -1434,7 +1434,8 @@ function setSklilss(){
         //     image: './assets/images/skills/sublime.png',
         //     name: 'Sublime Text',
         // }
-    ]
+    ];
+
   let html = '';
     data.map(item => {
         html += `
@@ -1444,6 +1445,73 @@ function setSklilss(){
         </div>`
     })
 
+    // additional 21/04/2025
+    // Tambahkan setelah deklarasi data di fungsi setSklilss()
+
+    const dataAI = [
+      {
+            image: './assets/images/skills/ai/claude.png',
+            name: 'Claude',
+        },{
+            image: './assets/images/skills/ai/openai.png',
+            name: 'OpenAI',
+        },
+        {
+            image: './assets/images/skills/ai/builder.png',
+            name: 'Builder.io',
+        },{
+            image: './assets/images/skills/ai/copliot.png',
+            name: 'Github Copilot',
+        },{
+            image: './assets/images/skills/ai/n8n.png', 
+            name: 'n8n',
+        },{
+            image: './assets/images/skills/ai/notebooklm.png',
+            name: 'Notebook LM',
+        },{
+            image: './assets/images/skills/ai/trae.png',
+            name: 'Trae',
+        }
+    ];
+
+    const dataProgress = [
+        {
+            image: './assets/images/skills/progress/aws.png',
+            name: 'AWS',
+        },{
+            image: './assets/images/skills/progress/firebase.png',
+            name: 'Firebase',
+        },{
+            image: './assets/images/skills/progress/mongodb.png',
+            name: 'MongoDB',
+        }
+    ];
+
+    // Tambahkan di akhir fungsi setSklilss() setelah $('.parent-skills').html(html)
+
+    let htmlAI = '<h3 class="h3 service-title" style="margin-top:40px">AI</h3><div class="wrap-image">';
+    dataAI.map(item => {
+        htmlAI += `
+        <div style="" class="image-wraper">
+          <img src="${item.image}" alt="" loading="lazy">
+          <span style="" class="text-image">${item.name}</span>
+        </div>`
+    });
+    htmlAI += '</div>';
+
+    let htmlProgress = '<h3 class="h3 service-title" style="margin-top:40px">On Learning</h3><div class="wrap-image">';
+    dataProgress.map(item => {
+        htmlProgress += `
+        <div style="" class="image-wraper">
+          <img src="${item.image}" alt="" loading="lazy">
+          <span style="" class="text-image">${item.name}</span>
+        </div>`
+    });
+    htmlProgress += '</div>';
+
+    $('.parent-skills').after(htmlProgress);
+    $('.parent-skills').after(htmlAI);
+    // additional 21/04/2025
 
     $('.parent-skills').html(html)
 }
