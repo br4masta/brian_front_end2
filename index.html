@@ -908,6 +908,7 @@ function portfolio() {
             judul: 'MuatParts',
             category: 'web development',
             href: 'https://xdemoseller.assetlogistik.id/muatparts/landing',
+            linkDetail:'https://brianbramasta.notion.site/Muatparts-1dd59c89e29c8019a1c5c87086f93df0',
             modalContent: {
                 images: [
                     './assets/images/new_asset/muatpart.png',
@@ -1234,9 +1235,15 @@ function portfolio() {
                                     </ul>
                                 </div>
                             ` : ''}
-                            ${projectData.href!==''?`<a class="form-btn" href="${projectData.href}" target="_blank" rel="noopener noreferrer" data-form-btn style="margin-left:0px">
+                            <div style="display:flex; flex-direction:row; gap:10px">
+                               ${projectData.href!==''?`<a class="form-btn" href="${projectData.href}" target="_blank" rel="noopener noreferrer" data-form-btn style="margin-left:0px">
                               <span>See The Web</span>
                             </a>`:''}
+                            ${projectData.linkDetail!==''?`<a class="form-btn" href="${projectData.linkDetail}" target="_blank" rel="noopener noreferrer" data-form-btn style="margin-left:0px">
+                              <span>See Detail Process</span>
+                            </a>`:''}
+                              </div>
+                           
                            
                         </div>
                     </div>
