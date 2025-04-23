@@ -955,7 +955,6 @@ function portfolio() {
         {
             sourceGambar: './assets/images/new_asset/e-money.jpg',
             judul: 'E-Money Custom',
-            href: '#',
             onHover: 'E-Money Custom',
             category: 'web development',
             modalContent: {
@@ -980,13 +979,12 @@ function portfolio() {
         {
             sourceGambar: './assets/images/new_asset/service desk.png',
             judul: 'Service Desk',
-            href: '#',
             onHover: 'Service Desk',
             category: 'web development'
         }, {
             sourceGambar: './assets/images/new_asset/gkid.jpg',
             judul: 'Project Management - GKDI',
-            href: 'https://brianaldybramasta.wixsite.com/brianbramasta/gkdi',
+            linkDetail: 'https://brianaldybramasta.wixsite.com/brianbramasta/gkdi',
             onHover: 'MGMX',
             category: 'web development',
             modalContent: { 
@@ -1033,14 +1031,14 @@ function portfolio() {
         },{
             sourceGambar: './assets/images/new_asset/MGMX.jpg',
             judul: 'MGMX',
-            href: 'https://brianaldybramasta.wixsite.com/brianbramasta/mgmx',
+            linkDetail: 'https://brianaldybramasta.wixsite.com/brianbramasta/mgmx',
             onHover: 'MGMX',
             category: 'web development'
         },
         {
             sourceGambar: './assets/images/new_asset/AzLogistik.jpg',
             judul: 'AZ Logistic',
-            href: 'https://brianaldybramasta.wixsite.com/brianbramasta/az-logistic',
+            linkDetail: 'https://brianaldybramasta.wixsite.com/brianbramasta/az-logistic',
             onHover: 'AZ Logistic',
             category: 'web development'
         },
@@ -1080,7 +1078,7 @@ function portfolio() {
         {
             sourceGambar: './assets/images/new_asset/si.jpg',
             judul: 'Sistem Informasi Manajemen Tugas Akhir',
-            href: 'https://brianaldybramasta.wixsite.com/brianbramasta/siteminformasimanajementugasakhir',
+            linkDetail: 'https://brianaldybramasta.wixsite.com/brianbramasta/siteminformasimanajementugasakhir',
             onHover: 'Sistem Informasi Manajemen Tugas Akhir',
             category: 'web development',
             modalContent: { 
@@ -1095,7 +1093,7 @@ function portfolio() {
         }, {
             sourceGambar: './assets/images/new_asset/tokoamanah.jpg',
             judul: 'Toko Amanah',
-            href: 'https://brianaldybramasta.wixsite.com/brianbramasta/toko-amanah',
+            linkDetail: 'https://brianaldybramasta.wixsite.com/brianbramasta/toko-amanah',
             onHover: 'UI and UX Design Toko Amanah',
             category: 'ui/ux'
             , modalContent: { 
@@ -1110,7 +1108,7 @@ function portfolio() {
         }, {
             sourceGambar: './assets/images/new_asset/nuri.png',
             judul: 'UX Design PT Nuri',
-            href: 'https://brianaldybramasta.wixsite.com/brianbramasta/cashondelivery',
+            linkDetail: 'https://brianaldybramasta.wixsite.com/brianbramasta/cashondelivery',
             onHover: 'UI and UX Design Toko Amanah',
             category: 'ui/ux'
             , modalContent: { 
@@ -1236,10 +1234,10 @@ function portfolio() {
                                 </div>
                             ` : ''}
                             <div style="display:flex; flex-direction:row; gap:10px">
-                               ${projectData.href!==''?`<a class="form-btn" href="${projectData.href}" target="_blank" rel="noopener noreferrer" data-form-btn style="margin-left:0px">
+                               ${projectData.href?`<a class="form-btn" href="${projectData.href}" target="_blank" rel="noopener noreferrer" data-form-btn style="margin-left:0px">
                               <span>See The Web</span>
                             </a>`:''}
-                            ${projectData.linkDetail!==''?`<a class="form-btn" href="${projectData.linkDetail}" target="_blank" rel="noopener noreferrer" data-form-btn style="margin-left:0px">
+                            ${projectData.linkDetail?`<a class="form-btn" href="${projectData.linkDetail}" target="_blank" rel="noopener noreferrer" data-form-btn style="margin-left:0px">
                               <span>See Detail Process</span>
                             </a>`:''}
                               </div>
