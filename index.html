@@ -723,7 +723,7 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
   <script>
-    
+    let urlapi = "https://my-next-firebase-app-git-master-br4mastas-projects.vercel.app"
 function serviceList() {
     data = [{
         img: `./assets/images/icon-dev.svg`,
@@ -912,6 +912,106 @@ integrations.</li>
 
     $('.experience').html(html)
 
+}
+
+function fetchExperiences() {
+    $.ajax({
+        url: urlapi+'/api/experiences',
+        method: 'GET',
+        success: function(response) {
+            // Separate work and education experiences
+            const workExperiences = response.experiences.filter(exp => exp.type === 'work');
+            const educationExperiences = response.experiences.filter(exp => exp.type === 'education');
+            
+            // Generate HTML for work experiences
+            let workHtml = '';
+            workExperiences.forEach(item => {
+                workHtml += `<li class="timeline-item">
+                    <h4 class="h4 timeline-item-title">${item.name}</h4>
+                    <span>${item.tahun}</span>
+                    <p class="timeline-text">
+                        ${item.description}
+                    </p>
+                </li>`;
+            });
+
+            // Generate HTML for education experiences
+            let educationHtml = '';
+            educationExperiences.forEach(item => {
+                educationHtml += `<li class="timeline-item">
+                    <h4 class="h4 timeline-item-title">${item.name}</h4>
+                    <span>${item.tahun}</span>
+                    <p class="timeline-text">
+                        ${item.description}
+                    </p>
+                </li>`;
+            });
+
+            // Update the DOM
+            $('.experience').html(workHtml);
+            $('.education').html(educationHtml);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error fetching experiences:', error);
+            // Display error message to user
+            $('.experience').html('<p>Failed to load work experience data.</p>');
+            $('.education').html('<p>Failed to load education data.</p>');
+        }
+    });
+}
+
+function fetchSkills() {
+    $.ajax({
+        url: urlapi+'/api/skills',
+        method: 'GET',
+        success: function(response) {
+            // Filter skills by status
+            const currentSkills = response.skills.filter(skill => skill.status === 'current');
+            const aiSkills = response.skills.filter(skill => skill.status === 'ai');
+            const learningSkills = response.skills.filter(skill => skill.status === 'learning');
+            
+            // Generate HTML for current skills
+            let currentHtml = '';
+            currentSkills.forEach(item => {
+                currentHtml += `
+                <div class="image-wraper">
+                    <img src="${item.image}" alt="${item.name}" loading="lazy">
+                    <span class="text-image">${item.name}</span>
+                </div>`;
+            });
+
+            // Generate HTML for AI skills
+            let aiHtml = '<h3 class="h3 service-title" style="margin-top:40px">AI</h3><div class="wrap-image">';
+            aiSkills.forEach(item => {
+                aiHtml += `
+                <div class="image-wraper">
+                    <img src="${item.image}" alt="${item.name}" loading="lazy">
+                    <span class="text-image">${item.name}</span>
+                </div>`;
+            });
+            aiHtml += '</div>';
+
+            // Generate HTML for learning skills
+            let learningHtml = '<h3 class="h3 service-title" style="margin-top:40px">On Learning</h3><div class="wrap-image">';
+            learningSkills.forEach(item => {
+                learningHtml += `
+                <div class="image-wraper">
+                    <img src="${item.image}" alt="${item.name}" loading="lazy">
+                    <span class="text-image">${item.name}</span>
+                </div>`;
+            });
+            learningHtml += '</div>';
+
+            // Update the DOM
+            $('.parent-skills').html(currentHtml);
+            $('.parent-skills').after(learningHtml);
+            $('.parent-skills').after(aiHtml);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error fetching skills:', error);
+            $('.parent-skills').html('<p>Failed to load skills data.</p>');
+        }
+    });
 }
 let dataPortfolio = []
 function portfolio() {
@@ -1390,162 +1490,196 @@ function initCarousel() {
     slides.eq(0).addClass('active').css('opacity', '1');
 }
 
-function setSklilss(){
-  data = [
-        {
-            image: './assets/images/skills/next.png',
-            name: 'Next Js',
-        },{
-            image: './assets/images/skills/vue.png',
-            name: 'Vue Js',
-        },{
-            image: './assets/images/skills/directus.png',
-            name: 'Directus',
-        },{
-            image: './assets/images/skills/progress/firebase.png',
-            name: 'Firebase',
-        },
-        // ,{
-        //     image: './assets/images/skills/php.png',
-        //     name: 'PHP',
-        // }
-        ,{
-            image: './assets/images/skills/jquery.png',
-            name: 'Jquery',
-        },{
-            image: './assets/images/skills/quasar.png',
-            name: 'Quasar Framework',
-        },{
-            image: './assets/images/skills/node.png',
-            name: 'Node Js',
-        },{
-            image: './assets/images/skills/express.png',
-            name: 'Express Js',
-        },{
-            image: './assets/images/skills/silverstripe.png',
-            name: 'Silverstripe',
-        },
-        {
-            image: './assets/images/skills/html5.png',
-            name: 'HTML 5',
-        },{
-            image: './assets/images/skills/css3.png',
-            name: 'CSS 3',
-        },{
-            image: './assets/images/skills/html5.png',
-            name: 'Semantic HTML',
-        },
-        // {
-        //     image: './assets/images/skills/html.png',
-        //     name: 'HTML, CSS, JavaScript',
-        // }
-        {
-            image: './assets/images/skills/git.png',
-            name: 'GIT',
-        },{
-            image: './assets/images/skills/seo.png',
-            name: 'SEO',
-        },{
-            image: './assets/images/skills/laravel.png',
-            name: 'Laravel',
-        },{
-            image: './assets/images/skills/codeigniter.png',
-            name: 'Codeigniter',
-        },
-        // {
-        //     image: './assets/images/skills/vscode.png',
-        //     name: 'VS Code',
-        // },{
-        //     image: './assets/images/skills/sublime.png',
-        //     name: 'Sublime Text',
-        // }
-    ];
+function fetchPortfolio() {
+    $.ajax({
+        url: urlapi+'/api/portfolio',
+        method: 'GET',
+        success: function(response) {
+            dataPortfolio = response.portfolioItems; // Store for modal use
+            
+            // Generate HTML for portfolio items
+            let html = '';
+            dataPortfolio.forEach((item, index) => {
+                html += `<li class="project-item active" data-filter-item data-category="${item.category}" data-project-index="${index}">
+                    <a href="javascript:void(0)" class="project-link">
+                        <figure class="project-img">
+                            <div class="project-item-icon-box">
+                                <ion-icon name="eye-outline"></ion-icon>
+                            </div>
+                            <img src="${item.sourceGambar}" alt="${item.judul}" loading="lazy" style="height: 145.859px; object-fit: contain;">
+                        </figure>
+                        <h3 class="project-title">${item.judul}</h3>
+                        <p class="project-category">${item.category}</p>
+                    </a>
+                </li>`;
+            });
 
-  let html = '';
-    data.map(item => {
-        html += `
-        <div style="" class="image-wraper">
-          <img src="${item.image}" alt="" loading="lazy">
-          <span style="" class="text-image">${item.name}</span>
-        </div>`
-    })
+            $('.project-list').html(html);
 
-    // additional 21/04/2025
-    // Tambahkan setelah deklarasi data di fungsi setSklilss()
+            // Add click event handlers for portfolio items
+            $('.project-list').on('click', '.project-link', function(e) {
+                e.preventDefault();
+                const index = $(this).closest('.project-item').data('project-index');
+                const projectData = dataPortfolio[index];
+                
+                if (projectData && projectData.modalContent) {
+                    let modalContent = `
+                        <div class="modal-content">
+                            <button class="modal-close-x" aria-label="Close modal">
+                                <ion-icon name="close-outline"></ion-icon>
+                            </button>
+                            <div class="modal-body">
+                                <h2 class="modal-title">${projectData.judul}</h2>
+                                <div class="modal-image-gallery">
+                                    <div class="carousel-container">
+                                        <div class="carousel-track">
+                                            ${projectData.modalContent.images.map((img, i) => `
+                                                <div class="carousel-slide ${i === 0 ? 'active' : ''}">
+                                                    <img src="${img}" alt="Project screenshot">
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                        ${projectData.modalContent.images.length > 1 ? `
+                                            <div class="carousel-nav">
+                                                <div class="carousel-btn prev">
+                                                    <ion-icon name="chevron-back-outline"></ion-icon>
+                                                </div>
+                                                <div class="carousel-btn next">
+                                                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-dots">
+                                                ${projectData.modalContent.images.map((_, i) => `
+                                                    <div class="dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>
+                                                `).join('')}
+                                            </div>
+                                        ` : ''}
+                                    </div>
+                                </div>
 
-    const dataAI = [
-      {
-            image: './assets/images/skills/ai/claude.png',
-            name: 'Claude',
-        },{
-            image: './assets/images/skills/ai/openai.png',
-            name: 'OpenAI',
+                                <div class="project-details">
+                                    ${projectData.modalContent.role ? `
+                                        <div class="detail-section">
+                                            <h3>Role</h3>
+                                            <p class="project-role">${projectData.modalContent.role}</p>
+                                        </div>
+                                    ` : ''}
+
+                                    ${projectData.modalContent.description ? `
+                                        <div class="detail-section">
+                                            <h3>Project Description</h3>
+                                            <p class="project-description">${projectData.modalContent.description}</p>
+                                        </div>
+                                    ` : ''}
+
+                                    ${projectData.modalContent.challenges ? `
+                                        <div class="detail-section">
+                                            <h3>Challenges</h3>
+                                            <ul class="project-challenges">
+                                                ${projectData.modalContent.challenges.map(challenge => 
+                                                    `<li>${challenge}</li>`).join('')}
+                                            </ul>
+                                        </div>
+                                    ` : ''}
+
+                                    ${projectData.modalContent.achievements ? `
+                                        <div class="detail-section">
+                                            <h3>Achievements</h3>
+                                            <ul class="project-achievements">
+                                                ${projectData.modalContent.achievements.map(achievement => 
+                                                    `<li>${achievement}</li>`).join('')}
+                                            </ul>
+                                        </div>
+                                    ` : ''}
+
+                                    ${projectData.modalContent.skills ? `
+                                        <div class="detail-section">
+                                            <h3>Skills & Deliverables</h3>
+                                            <ul class="project-skills">
+                                                ${projectData.modalContent.skills.map(skill => 
+                                                    `<li>${skill}</li>`).join('')}
+                                            </ul>
+                                        </div>
+                                    ` : ''}
+
+                                    <div style="display:flex; flex-direction:row; gap:10px">
+                                        ${projectData.href ? `
+                                            <a class="form-btn" href="${projectData.href}" target="_blank" rel="noopener noreferrer" data-form-btn style="margin-left:0px">
+                                                <span>See The Web</span>
+                                            </a>
+                                        ` : ''}
+                                        ${projectData.linkDetail ? `
+                                            <a class="form-btn" href="${projectData.linkDetail}" target="_blank" rel="noopener noreferrer" data-form-btn style="margin-left:0px">
+                                                <span>See Detail Process</span>
+                                            </a>
+                                        ` : ''}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    $('#portfolioModal').html(modalContent).fadeIn(300);
+                    
+                    if (projectData.modalContent.images.length > 1) {
+                        initCarousel();
+                    }
+                } else {
+                    // Basic modal for projects without detailed content
+                    let modalContent = `
+                        <div class="modal-content">
+                            <button class="modal-close-x" aria-label="Close modal">
+                                <ion-icon name="close-outline"></ion-icon>
+                            </button>
+                            <div class="modal-body">
+                                <h2 class="modal-title">${projectData.judul}</h2>
+                                <div class="modal-image-gallery">
+                                    <img src="${projectData.sourceGambar}" alt="Project screenshot">
+                                </div>
+                                <div class="project-details">
+                                    ${projectData.href ? `
+                                        <a class="form-btn" href="${projectData.href}" target="_blank" rel="noopener noreferrer" data-form-btn style="margin-left:0px">
+                                            <span>See The Web</span>
+                                        </a>
+                                    ` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    $('#portfolioModal').html(modalContent).fadeIn(300);
+                }
+            });
+
+            // Modal close handlers
+            $(document).on('click', '.modal-close-x', function() {
+                $('#portfolioModal').fadeOut(300);
+            });
+
+            $(window).on('click', function(e) {
+                if ($(e.target).is('#portfolioModal')) {
+                    $('#portfolioModal').fadeOut(300);
+                }
+            });
         },
-        {
-            image: './assets/images/skills/ai/builder.png',
-            name: 'Builder.io',
-        },{
-            image: './assets/images/skills/ai/copliot.png',
-            name: 'Github Copilot',
-        },{
-            image: './assets/images/skills/ai/n8n.png', 
-            name: 'n8n',
-        },{
-            image: './assets/images/skills/ai/notebooklm.png',
-            name: 'Notebook LM',
-        },{
-            image: './assets/images/skills/ai/trae.png',
-            name: 'Trae',
+        error: function(xhr, status, error) {
+            console.error('Error fetching portfolio:', error);
+            $('.project-list').html('<p>Failed to load portfolio items.</p>');
         }
-    ];
-
-    const dataProgress = [
-        {
-            image: './assets/images/skills/progress/aws.png',
-            name: 'AWS',
-        },{
-            image: './assets/images/skills/progress/mongodb.png',
-            name: 'MongoDB',
-        }
-    ];
-
-    // Tambahkan di akhir fungsi setSklilss() setelah $('.parent-skills').html(html)
-
-    let htmlAI = '<h3 class="h3 service-title" style="margin-top:40px">AI</h3><div class="wrap-image">';
-    dataAI.map(item => {
-        htmlAI += `
-        <div style="" class="image-wraper">
-          <img src="${item.image}" alt="" loading="lazy">
-          <span style="" class="text-image">${item.name}</span>
-        </div>`
     });
-    htmlAI += '</div>';
-
-    let htmlProgress = '<h3 class="h3 service-title" style="margin-top:40px">On Learning</h3><div class="wrap-image">';
-    dataProgress.map(item => {
-        htmlProgress += `
-        <div style="" class="image-wraper">
-          <img src="${item.image}" alt="" loading="lazy">
-          <span style="" class="text-image">${item.name}</span>
-        </div>`
-    });
-    htmlProgress += '</div>';
-
-    $('.parent-skills').after(htmlProgress);
-    $('.parent-skills').after(htmlAI);
-    // additional 21/04/2025
-
-    $('.parent-skills').html(html)
 }
 
 $(document).ready(function () {
     console.log('tes')
     serviceList()
     education()
-    expericeList()
-    portfolio()
+    // expericeList()
+    fetchExperiences()
+    // portfolio()
+    fetchPortfolio()
     setInterac()
-    setSklilss()
+    // setSklilss()
+    fetchSkills()
     loadMediumArticles() // Add this line
 });
 
