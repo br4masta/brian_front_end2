@@ -26,9 +26,53 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <style>
+    .video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .video-background video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    .video-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="video-background">
+    <video autoplay muted loop playsinline >
+      <source src="./assets/videos/background2.mp4" type="video/mp4">
+      <!-- Add more source elements for different video formats if needed -->
+    </video>
+    <div class="video-overlay"></div>
+  </div>
 
   <!--
     - #MAIN
@@ -130,8 +174,8 @@
         <ul class="social-list">
 
           <li class="social-item">
-            <a href="https://www.linkedin.com/in/brian-aldy-bramasta-718755186/" target='_blank' class="float d-flex align-items-center justify-content-center" >
-              <img src="./assets/images/new_asset/LinkedIn 2.png" alt="" width="18px"/>
+            <a href="https://www.linkedin.com/in/brian-aldy-bramasta-718755186/" target='_blank' class="float d-flex align-items-center justify-content-center">
+              <img src="./assets/images/new_asset/LinkedIn 2.png" alt="" width="18px" />
             </a>
           </li>
           <li class="social-item">
@@ -155,7 +199,7 @@
     -->
 
     <div class="main-content">
-      
+
       <!--
         - #NAVBAR
       -->
@@ -225,14 +269,13 @@
           <ul class="service-list">
             <!-- custom js -->
 
-            
 
           </ul>
 
         </section>
 
 
-        
+
         <div class="modal-container" data-modal-container>
 
           <div class="overlay" data-overlay></div>
@@ -274,7 +317,6 @@
         </div>
 
 
-        
       </article>
 
       <article class="skills " data-page="skills">
@@ -282,7 +324,7 @@
           <h2 class="h2 article-title">My Skills</h2>
         </header>
         <style>
-          .skills.active .wrap-image{
+          .skills.active .wrap-image {
             display: flex;
             /* justify-content: space-between; */
             flex-wrap: wrap;
@@ -290,54 +332,52 @@
             gap: 40px;
           }
 
-          .wrap-image img{
+          .wrap-image img {
             width: 40px;
             height: max-content;
             /* margin-bottom: 20px; */
             -webkit-filter: grayscale(100%);
-            
-            
+
+
           }
 
-          .image-wraper{
-            display: flex; 
-            align-items:center;
-            gap:6px;
-            min-width:130px;
+          .image-wraper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            min-width: 130px;
             cursor: pointer;
-            .text-image{
+            .text-image {
               color: white;
-              max-width:85px;
+              max-width: 85px;
               font-size: 14px;
             }
           }
 
-          .wrap-image .image-wraper:hover{
-            
-            img{
+          .wrap-image .image-wraper:hover {
+
+            img {
               -webkit-filter: unset;
             }
-            .text-image{
+            .text-image {
               color: hsl(35, 100%, 68%);
             }
-          } 
+          }
 
-          
-          
 
-          .resume-btn{
+          .resume-btn {
             margin-bottom: 10px;
           }
         </style>
         <section class="skills-text">
           <div class="wrap-image parent-skills">
-            
+
           </div>
-         
+
         </section>
 
-      
-        
+
+
       </article>
 
 
@@ -354,8 +394,8 @@
           <h2 class="h2 article-title">Resume</h2>
         </header>
 
-        <a  href="https://drive.google.com/file/d/1L-T_D6n631DbvkSgQFUKYMVkTQu5m4aw/view?usp=sharing"
-        target='_blank'  class="form-btn resume-btn"  data-form-btn="">
+        <a href="https://drive.google.com/file/d/1L-T_D6n631DbvkSgQFUKYMVkTQu5m4aw/view?usp=sharing"
+          target='_blank' class="form-btn resume-btn" data-form-btn="">
           <span>Resume</span>
         </a>
 
@@ -382,11 +422,9 @@
           </ol>
         </section>
 
-        
 
-        
 
-        
+
       </article>
 
 
@@ -461,7 +499,7 @@
               <span class="modal-close-x">&times;</span>
               <div class="modal-body">
                 <h2 class="modal-title"></h2>
-                
+
                 <div class="modal-image-gallery">
                   <!-- Images will be inserted here -->
                 </div>
@@ -534,7 +572,7 @@
             padding: 10px 5px;
             flex-direction: column;
           }
-          
+
           .article-card {
             flex: 0 0 300px;
             background: var(--modal-bg);
@@ -543,22 +581,22 @@
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
           }
-          
+
           .article-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
           }
-          
+
           .article-image {
             width: 100%;
             height: 160px;
             object-fit: cover;
           }
-          
+
           .article-content {
             padding: 15px;
           }
-          
+
           .article-title {
             font-size: 1.1em;
             margin-bottom: 10px;
@@ -568,10 +606,11 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
           }
-          .article-footer{
+
+          .article-footer {
             color: var(--light-gray);
           }
-          
+
           .article-description {
             font-size: 0.9em;
             color: var(--text-primary);
@@ -581,7 +620,7 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
           }
-          
+
           .article-link {
             display: inline-block;
             color: var(--orange);
@@ -589,11 +628,11 @@
             font-weight: 500;
             margin-top: auto;
           }
-          
+
           .article-link:hover {
             text-decoration: underline;
           }
-          
+
           .article-date {
             font-size: 0.8em;
             color: var(--text-light);
@@ -605,7 +644,7 @@
               flex: 0 0 360px;
             }
           }
-          
+
           .pagination {
             display: flex;
             justify-content: center;
@@ -672,7 +711,9 @@
 
         <section class="mapbox" data-mapbox>
           <figure>
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.418580061671!2d112.76534360990672!3d-7.306782292670585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb89f1c42717%3A0x6858ff81a69f99a3!2sMGE%20Morning%20Glory%20Enterprise!5e0!3m2!1sid!2sid!4v1720278114397!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.418580061671!2d112.76534360990672!3d-7.306782292670585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb89f1c42717%3A0x6858ff81a69f99a3!2sMGE%20Morning%20Glory%20Enterprise!5e0!3m2!1sid!2sid!4v1720278114397!5m2!1sid!2sid"
+              width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
           </figure>
         </section>
 
@@ -680,7 +721,8 @@
 
           <h3 class="h3 form-title">Contact Form</h3>
 
-          <form className="contact-form" action="https://formspree.io/f/mknllwqe" method="POST"  class="form" data-form>
+          <form className="contact-form" action="https://formspree.io/f/mknllwqe" method="POST" class="form"
+            data-form>
 
             <div class="input-wrapper">
               <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
