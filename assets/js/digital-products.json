@@ -1,0 +1,18 @@
+{
+  "products": [
+    {
+      "title": "Template Landing Page Coffee Shop",
+      "description": "Template landing page modern untuk coffee shop, mudah di-custom dan responsif.",
+      "image": "./assets/images/new_asset/landing-page-coffee.png",
+      "preview": "https://demo.coffee-shop.com",
+      "buy": "https://tokopedia.com/produk-coffee-shop"
+    },
+    {
+      "title": "E-Money Card Design",
+      "description": "Desain kartu e-money unik dan eksklusif, siap cetak.",
+      "image": "./assets/images/new_asset/e-money.png",
+      "preview": "https://demo.e-money.com",
+      "buy": "https://shopee.co.id/e-money-card"
+    }
+  ]
+} 

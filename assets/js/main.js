@@ -18,26 +18,70 @@ function serviceList() {
         img: `./assets/images/icon-design.svg`,
         title: `Web design`,
         description: `The most modern and high-quality design made at a professional level.`
+    },
+    {
+        img: `./assets/images/new_asset/landing-page-coffee.png`,
+        title: `Digital Product`,
+        description: `Koleksi produk digital siap pakai, klik untuk lihat detail dan beli.`,
+        isDigitalProduct: true
     }
     ]
 
     let html = '';
-    data.map(item => {
-        html += `<li class="service-item">
-                    <div class="service-icon-box">
-                      <img src="${item.img}
-                      " alt="design icon" width="40">
-                    </div>
-                    <div class="service-content-box">
-                      <h4 class="h4 service-item-title">${item.title}</h4>
-                      <p class="service-item-text">
-                          ${item.description}
-                      </p>
-                    </div>
-                  </li>`
+    data.map((item, idx) => {
+        if(item.isDigitalProduct){
+            html += `<li class="service-item digital-product-service" style="cursor:pointer" data-digital-product>
+                        <div class="service-icon-box">
+                          <img src="${item.img}"
+                          alt="digital product icon" width="40">
+                        </div>
+                        <div class="service-content-box">
+                          <h4 class="h4 service-item-title">${item.title}</h4>
+                          <p class="service-item-text">
+                              ${item.description}
+                          </p>
+                        </div>
+                      </li>`
+        }else{
+            let serviceType = item.title.toLowerCase().includes('web development') ? 'webdev' : (item.title.toLowerCase().includes('web design') ? 'webdesign' : '');
+            html += `<li class="service-item" ${serviceType ? `data-service-type='${serviceType}' style='cursor:pointer'` : ''}>
+                        <div class="service-icon-box">
+                          <img src="${item.img}"
+                          alt="design icon" width="40">
+                        </div>
+                        <div class="service-content-box">
+                          <h4 class="h4 service-item-title">${item.title}</h4>
+                          <p class="service-item-text">
+                              ${item.description}
+                          </p>
+                        </div>
+                      </li>`
+        }
     })
 
     $('.service-list').html(html)
+
+    // Event klik untuk digital product
+    $('[data-digital-product]').on('click', function() {
+        if (typeof loadDigitalProducts === 'function') loadDigitalProducts();
+        $('[data-page]').removeClass('active');
+        $('[data-nav-link]').removeClass('active');
+        $('[data-page="digital-product"]').addClass('active');
+    });
+
+    // Event klik untuk Web development dan Web design
+    $('[data-service-type="webdev"]').on('click', function() {
+        $('[data-page]').removeClass('active');
+        $('[data-nav-link]').removeClass('active');
+        $('[data-page="portfolio"]').addClass('active');
+        fetchPortfolio('web development');
+    });
+    $('[data-service-type="webdesign"]').on('click', function() {
+        $('[data-page]').removeClass('active');
+        $('[data-nav-link]').removeClass('active');
+        $('[data-page="portfolio"]').addClass('active');
+        fetchPortfolio('ui/ux');
+    });
 }
 
 
@@ -207,7 +251,7 @@ function initCarousel() {
     slides.eq(0).addClass('active').css('opacity', '1');
 }
 
-function fetchPortfolio() {
+function fetchPortfolio(filterCategory) {
     $.ajax({
         url: urlapi+'/api/portfolio',
         method: 'GET',
@@ -378,6 +422,19 @@ function fetchPortfolio() {
                     $('#portfolioModal').fadeOut(300);
                 }
             });
+
+            setInterac(); // Inisialisasi ulang event filter dan variabel filter setelah render project-list
+            // Jalankan filter jika ada filterCategory
+            if (filterCategory && typeof window.filterFunc === 'function') {
+                window.filterFunc(filterCategory);
+                // Set tab aktif juga
+                $(".filter-list button").removeClass('active');
+                if(filterCategory === 'web development') {
+                    $(".filter-list button:contains('Web development')").addClass('active');
+                } else if(filterCategory === 'ui/ux') {
+                    $(".filter-list button:contains('UI/UX')").addClass('active');
+                }
+            }
         },
         error: function(xhr, status, error) {
             console.error('Error fetching portfolio:', error);
@@ -515,4 +572,29 @@ function loadMediumArticles() {
       btn.classList.toggle('active', parseInt(btn.dataset.page) === page);
     });
   }
+}
+
+function loadDigitalProducts() {
+  $.getJSON('./assets/js/digital-products.json', function(data) {
+    let html = '';
+    data.products.forEach(product => {
+      html += `
+        <div class="digital-product-card">
+          <img src="${product.image}" alt="${product.title}" class="digital-product-image">
+          <div class="digital-product-content">
+            <h3 class="digital-product-title">${product.title}</h3>
+            <p class="digital-product-desc">${product.description}</p>
+            <div class="digital-product-actions">
+              <a href="${product.preview}" target="_blank" class="digital-product-btn">Preview</a>
+              <a href="${product.buy}" target="_blank" class="digital-product-btn buy">Beli</a>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    console.log('load digital product',html)
+    $('#digital-products').html(html);
+  }).fail(function() {
+    $('#digital-products').html('<p>Gagal memuat produk digital.</p>');
+  });
 }

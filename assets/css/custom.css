@@ -21,3 +21,221 @@
             border-radius: 20px;
             }
     }
+
+/* === Moved from index.html inline <style> === */
+
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.video-background video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+.audio-control {
+  background: none;
+  border: none;
+  color: var(--light-gray);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.audio-control:hover {
+  background: var(--orange);
+  color: white;
+}
+
+.audio-control ion-icon {
+  font-size: 1.2em;
+}
+
+/* Skills Section Styles */
+.skills.active .wrap-image {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+}
+
+.wrap-image img {
+  width: 40px;
+  height: max-content;
+  -webkit-filter: grayscale(100%);
+}
+
+.image-wraper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 130px;
+  cursor: pointer;
+}
+.image-wraper .text-image {
+  color: white;
+  max-width: 85px;
+  font-size: 14px;
+}
+
+.wrap-image .image-wraper:hover img {
+  -webkit-filter: unset;
+}
+.wrap-image .image-wraper:hover .text-image {
+  color: hsl(35, 100%, 68%);
+}
+
+.resume-btn {
+  margin-bottom: 10px;
+}
+
+/* Article Section Styles */
+.articles-wrapper {
+  position: relative;
+  overflow-x: auto;
+  padding: 20px 0;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.articles-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.articles-slider {
+  display: flex;
+  gap: 20px;
+  padding: 10px 5px;
+  flex-direction: column;
+}
+.article-card {
+  flex: 0 0 300px;
+  background: var(--modal-bg);
+  border: 1px solid var(--border-primary);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.article-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+.article-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+.article-content {
+  padding: 15px;
+}
+.article-title {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  color: var(--light-gray);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.article-footer {
+  color: var(--light-gray);
+}
+.article-description {
+  font-size: 0.9em;
+  color: var(--text-primary);
+  margin-bottom: 15px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.article-link {
+  display: inline-block;
+  color: var(--orange);
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: auto;
+}
+.article-link:hover {
+  text-decoration: underline;
+}
+.article-date {
+  font-size: 0.8em;
+  color: var(--text-light);
+  margin-top: 10px;
+}
+@media (max-width: 580px) {
+  .article-card {
+    flex: 0 0 360px;
+  }
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+.pagination-btn {
+  background: var(--modal-bg);
+  border: 1px solid var(--border-primary);
+  color: var(--light-gray);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.pagination-btn:not(:disabled):hover {
+  background: var(--orange);
+  color: white;
+}
+.pagination-numbers {
+  display: flex;
+  gap: 5px;
+}
+.page-number {
+  background: var(--modal-bg);
+  border: 1px solid var(--border-primary);
+  color: var(--light-gray);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.page-number.active {
+  background: var(--orange);
+  color: white;
+}
+.page-number:hover:not(.active) {
+  background: var(--border-primary);
+}

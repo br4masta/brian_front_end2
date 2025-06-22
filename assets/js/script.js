@@ -137,10 +137,8 @@ for (let i = 0; i < selectItems.length; i++) {
 const filterItems = document.querySelectorAll("[data-filter-item]");
 
 const filterFunc = function (selectedValue) {
-
   for (let i = 0; i < filterItems.length; i++) {
     const item = filterItems[i];
-      
     if (selectedValue === "all" || selectedValue === item.dataset.category) {
       item.classList.remove('hidden');
       setTimeout(() => item.classList.add('active'), 10);
@@ -149,26 +147,22 @@ const filterFunc = function (selectedValue) {
       setTimeout(() => item.classList.add('hidden'), 300);
     }
   }
-
 }
+window.filterFunc = filterFunc;
 
 // add event in all filter button items for large screen
 let lastClickedBtn = filterBtn[0];
 
 for (let i = 0; i < filterBtn.length; i++) {
-
   filterBtn[i].addEventListener("click", function () {
-
     let selectedValue = this.innerText.toLowerCase();
     selectValue.innerText = this.innerText;
     filterFunc(selectedValue);
-
+    // Atur tab aktif
     lastClickedBtn.classList.remove("active");
     this.classList.add("active");
     lastClickedBtn = this;
-
   });
-
 }
 
 
@@ -201,18 +195,17 @@ const pages = document.querySelectorAll("[data-page]");
 // add event to all nav link
 for (let i = 0; i < navigationLinks.length; i++) {
   navigationLinks[i].addEventListener("click", function () {
-
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
+    const targetPage = this.getAttribute('data-page-target');
+    for (let j = 0; j < pages.length; j++) {
+      if (pages[j].dataset.page === targetPage) {
+        pages[j].classList.add("active");
         navigationLinks[i].classList.add("active");
         window.scrollTo(0, 0);
       } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
+        pages[j].classList.remove("active");
+        if (navigationLinks[j]) navigationLinks[j].classList.remove("active");
       }
     }
-
   });
 }
 
