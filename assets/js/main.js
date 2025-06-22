@@ -20,9 +20,9 @@ function serviceList() {
         description: `The most modern and high-quality design made at a professional level.`
     },
     {
-        img: `./assets/images/new_asset/landing-page-coffee.png`,
-        title: `Digital Product`,
-        description: `Koleksi produk digital siap pakai, klik untuk lihat detail dan beli.`,
+        img: `./assets/images/icon-dev.svg`,
+        title: `Selling Digital Product`,
+        description: `A collection of ready-to-use digital products. Click to see details and purchase.`,
         isDigitalProduct: true
     }
     ]
@@ -443,15 +443,63 @@ function fetchPortfolio(filterCategory) {
     });
 }
 
+// Fungsi untuk mengaktifkan section berdasarkan parameter ?page= di URL
+function activateSectionFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const page = params.get('page');
+  if (page) {
+    // Nonaktifkan semua section dan nav-link
+    $('[data-page]').removeClass('active');
+    $('[data-nav-link]').removeClass('active');
+    // Aktifkan section yang sesuai
+    const $targetSection = $(`[data-page="${page}"]`);
+    if ($targetSection.length) {
+      $targetSection.addClass('active');
+      // Jika ada nav-link yang sesuai, aktifkan juga
+      $(`[data-nav-link][data-page-target="${page}"]`).addClass('active');
+      // Jalankan fungsi khusus jika perlu
+      if (page === 'portfolio') fetchPortfolio();
+      if (page === 'skills') fetchSkills();
+      if (page === 'resume') fetchExperiences();
+      if (page === 'digital-product') loadDigitalProducts();
+      if (page === 'article') loadMediumArticles();
+    }
+  }
+}
+
+// Fungsi untuk update URL saat pindah section
+function updateUrlPageParam(page) {
+  const url = new URL(window.location);
+  url.searchParams.set('page', page);
+  window.history.pushState({page}, '', url);
+}
+
 $(document).ready(function () {
     console.log('tes')
     serviceList()
-   
-    // fetchExperiences()
-    // fetchPortfolio()
+    activateSectionFromUrl();
     setInterac()
-    // fetchSkills()
-    // loadMediumArticles() // Add this line
+
+    // Event: klik nav-link (tab utama)
+    $('[data-nav-link]').on('click', function() {
+      const pageTarget = $(this).attr('data-page-target');
+      if (pageTarget) {
+        updateUrlPageParam(pageTarget);
+      }
+    });
+
+    // Event: klik service-list (webdev/webdesign/digital-product)
+    $(document).on('click', '[data-service-type], [data-digital-product]', function() {
+      if ($(this).is('[data-service-type]')) {
+        const type = $(this).attr('data-service-type');
+        if (type === 'webdev' || type === 'webdesign') {
+          updateUrlPageParam('portfolio');
+        }
+      }
+      if ($(this).is('[data-digital-product]')) {
+        updateUrlPageParam('digital-product');
+      }
+    });
 });
 
 function loadMediumArticles() {
