@@ -29,6 +29,39 @@
 </head>
 
 <body>
+  <style>
+    #top-marquee {
+      opacity: 0;
+      transition: opacity 0.7s cubic-bezier(.4,0,.2,1);
+    }
+    #top-marquee.show {
+      opacity: 1;
+    }
+  </style>
+  <!-- Pesan berjalan di paling atas -->
+  <div id="top-marquee" style="width:100vw;position:fixed;top:0;left:0;z-index:9999;background:linear-gradient(90deg,#ffdb6e,#ffbc5e);color:#222;font-weight:600;font-family:'Poppins',sans-serif;padding:7px 0;box-shadow:0 2px 8px rgba(0,0,0,0.08);overflow:hidden;">
+    <marquee behavior="scroll" direction="left" scrollamount="7" style="font-size:1em;letter-spacing:1px;">Please perform a hard reload to update the appearance by pressing Ctrl + Shift + F5.</marquee>
+  </div>
+  <script>
+    // Fade in
+    window.addEventListener('DOMContentLoaded',function(){
+      setTimeout(function(){
+        var m=document.getElementById('top-marquee');
+        if(m) m.classList.add('show');
+      },100);
+      // Fade out after 5s
+      setTimeout(function(){
+        var m=document.getElementById('top-marquee');
+        if(m) m.classList.remove('show');
+      },15000);
+      // Remove from DOM after fade out
+      setTimeout(function(){
+        var m=document.getElementById('top-marquee');
+        if(m) m.style.display='none';
+      },15700);
+    });
+  </script>
+
   <!-- Add background audio -->
   <audio id="bgAudio" loop autoplay muted>
     <source src="./assets/audio/Dressing Up Box.mp3" type="audio/mp3">
@@ -326,7 +359,7 @@
           <h2 class="h2 article-title">Resume</h2>
         </header>
 
-        <a href="https://drive.google.com/file/d/1L-T_D6n631DbvkSgQFUKYMVkTQu5m4aw/view?usp=sharing"
+        <a href="https://docs.google.com/document/d/1OTFoNhOLkzCm4MaUnrUKwAtvyV41m0S-eqlogxjZtL4/edit?tab=t.0"
           target='_blank' class="form-btn resume-btn" data-form-btn="">
           <span>Resume</span>
         </a>

@@ -15,12 +15,7 @@
   color: var(--white-1); /* Use the dark text color in light mode */
 }
 
-    @media (max-width:720px) {
-        .avatar-box img{
-            background-color: #7C7B7B;
-            border-radius: 20px;
-            }
-    }
+  
 
 /* === Moved from index.html inline <style> === */
 
@@ -348,4 +343,15 @@ main {
     width: 70px;
     height: 70px;
   }
+}
+
+@media (max-width:720px) {
+  .avatar-box img{
+      background-color: #7C7B7B;
+      border-radius: 20px;
+      }
+      .digital-product-card {
+        max-width: 100%;
+        
+      }
 }
