@@ -1,5 +1,5 @@
-// let urlapi = "https://my-next-firebase-app-git-master-br4mastas-projects.vercel.app"
-let urlapi = "http://localhost:3000"
+let urlapi = "https://my-next-firebase-app-git-master-br4mastas-projects.vercel.app"
+// let urlapi = "http://localhost:3000"
 
 // Setup global AJAX handlers
 $(document).ajaxStart(function() {
