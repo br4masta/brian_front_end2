@@ -1,4 +1,5 @@
-let urlapi = "https://my-next-firebase-app-git-master-br4mastas-projects.vercel.app"
+// let urlapi = "https://my-next-firebase-app-git-master-br4mastas-projects.vercel.app"
+let urlapi = "http://localhost:3000"
 
 // Setup global AJAX handlers
 $(document).ajaxStart(function() {
@@ -74,13 +75,13 @@ function serviceList() {
         $('[data-page]').removeClass('active');
         $('[data-nav-link]').removeClass('active');
         $('[data-page="portfolio"]').addClass('active');
-        fetchPortfolio('web development');
+        fetchPortfolio('web development', 1, currentLimit);
     });
     $('[data-service-type="webdesign"]').on('click', function() {
         $('[data-page]').removeClass('active');
         $('[data-nav-link]').removeClass('active');
         $('[data-page="portfolio"]').addClass('active');
-        fetchPortfolio('ui/ux');
+        fetchPortfolio('ui/ux', 1, currentLimit);
     });
 }
 
@@ -251,12 +252,132 @@ function initCarousel() {
     slides.eq(0).addClass('active').css('opacity', '1');
 }
 
-function fetchPortfolio(filterCategory) {
+function generatePaginationControls(currentPage, totalPages) {
+    let html = '<div class="pagination">';
+    
+    // Previous button
+    html += `<button class="pagination-btn prev" ${currentPage === 1 ? 'disabled' : ''}>
+        <ion-icon name="chevron-back-outline"></ion-icon>
+    </button>`;
+
+    // Page numbers
+    for (let i = 1; i <= totalPages; i++) {
+        if (
+            i === 1 || // First page
+            i === totalPages || // Last page
+            (i >= currentPage - 2 && i <= currentPage + 2) // Pages around current page
+        ) {
+            html += `<button class="page-number ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+        } else if (
+            (i === currentPage - 3 && currentPage > 4) ||
+            (i === currentPage + 3 && currentPage < totalPages - 3)
+        ) {
+            html += '<span class="pagination-dots">...</span>';
+        }
+    }
+
+    // Next button
+    html += `<button class="pagination-btn next" ${currentPage === totalPages ? 'disabled' : ''}>
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+    </button>`;
+    
+    html += '</div>';
+    return html;
+}
+
+let currentLimit = 10; // Store current limit globally
+
+// Function to fetch and render categories
+function fetchCategories() {
     $.ajax({
-        url: urlapi+'/api/portfolio',
+        url: `${urlapi}/api/portfolio/categories`,
         method: 'GET',
         success: function(response) {
-            dataPortfolio = response.portfolioItems; // Store for modal use
+            // Generate HTML for filter list
+            let filterListHtml = `
+                <li class="filter-item">
+                    <button class="active" data-filter-btn data-category="">All</button>
+                </li>
+            `;
+            let selectListHtml = `
+                <li class="select-item">
+                    <button data-select-item data-category="">All</button>
+                </li>
+            `;
+
+            // Add categories from API
+            response.categories.forEach(category => {
+                filterListHtml += `
+                    <li class="filter-item">
+                        <button data-filter-btn data-category="${category}">${category}</button>
+                    </li>
+                `;
+                selectListHtml += `
+                    <li class="select-item">
+                        <button data-select-item data-category="${category}">${category}</button>
+                    </li>
+                `;
+            });
+
+            // Update both filter lists
+            $('.filter-list').html(filterListHtml);
+            $('.select-list').html(selectListHtml);
+
+            // Add click handlers for filtering
+            $('[data-filter-btn]').on('click', function() {
+                const category = $(this).data('category');
+                // Remove active class from all buttons
+                $('[data-filter-btn]').removeClass('active');
+                $('[data-select-item]').removeClass('active');
+                $(this).addClass('active');
+                
+                // Update mobile select value
+                $('[data-selecct-value]').text($(this).text());
+                
+                // Find and activate corresponding select item
+                $(`[data-select-item][data-category="${category}"]`).addClass('active');
+                
+                fetchPortfolio(category);
+            });
+
+            $('[data-select-item]').on('click', function() {
+                const category = $(this).data('category');
+                const categoryText = $(this).text();
+                
+                // Remove active class from all buttons
+                $('[data-filter-btn]').removeClass('active');
+                $('[data-select-item]').removeClass('active');
+                $(this).addClass('active');
+                
+                // Update select value
+                $('[data-selecct-value]').text(categoryText);
+                
+                // Find and activate corresponding filter button
+                $(`[data-filter-btn][data-category="${category}"]`).addClass('active');
+                
+                fetchPortfolio(category);
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error('Error fetching categories:', error);
+        }
+    });
+}
+
+function fetchPortfolio(filterCategory, page = 1, limit = currentLimit) {
+    currentLimit = limit; // Update current limit
+    const url = new URL(`${urlapi}/api/portfolio`);
+    url.searchParams.set('page', page);
+    url.searchParams.set('limit', limit);
+    if (filterCategory) {
+        url.searchParams.set('category', filterCategory);
+    }
+
+    $.ajax({
+        url: url.toString(),
+        method: 'GET',
+        success: function(response) {
+            dataPortfolio = response.items; // Store for modal use
             
             // Generate HTML for portfolio items
             let html = '';
@@ -423,22 +544,48 @@ function fetchPortfolio(filterCategory) {
                 }
             });
 
+            // Add pagination controls
+            if (response.totalPages > 1) {
+                const paginationHtml = generatePaginationControls(response.currentPage, response.totalPages);
+                $('.portfolio-pagination').html(paginationHtml);
+
+                // Add pagination event handlers
+                $('.portfolio-pagination .page-number').off('click').on('click', function() {
+                    const newPage = $(this).data('page');
+                    fetchPortfolio(filterCategory, newPage);
+                });
+
+                $('.portfolio-pagination .pagination-btn').off('click').on('click', function() {
+                    if (!$(this).prop('disabled')) {
+                        const direction = $(this).hasClass('prev') ? -1 : 1;
+                        const newPage = response.currentPage + direction;
+                        if (newPage >= 1 && newPage <= response.totalPages) {
+                            fetchPortfolio(filterCategory, newPage);
+                        }
+                    }
+                });
+            } else {
+                $('.portfolio-pagination').html('');
+            }
+
             setInterac(); // Inisialisasi ulang event filter dan variabel filter setelah render project-list
             // Jalankan filter jika ada filterCategory
             if (filterCategory && typeof window.filterFunc === 'function') {
                 window.filterFunc(filterCategory);
                 // Set tab aktif juga
                 $(".filter-list button").removeClass('active');
-                if(filterCategory === 'web development') {
-                    $(".filter-list button:contains('Web development')").addClass('active');
-                } else if(filterCategory === 'ui/ux') {
-                    $(".filter-list button:contains('UI/UX')").addClass('active');
-                }
+                $(`.filter-list button:contains('${filterCategory}')`).addClass('active');
+                // if(filterCategory === 'web development') {
+                //     $(".filter-list button:contains('web development')").addClass('active');
+                // } else if(filterCategory === 'ui/ux') {
+                //     $(".filter-list button:contains('UI/UX')").addClass('active');
+                // }
             }
         },
         error: function(xhr, status, error) {
             console.error('Error fetching portfolio:', error);
             $('.project-list').html('<p>Failed to load portfolio items.</p>');
+            $('.portfolio-pagination').html('');
         }
     });
 }
@@ -458,7 +605,10 @@ function activateSectionFromUrl() {
       // Jika ada nav-link yang sesuai, aktifkan juga
       $(`[data-nav-link][data-page-target="${page}"]`).addClass('active');
       // Jalankan fungsi khusus jika perlu
-      if (page === 'portfolio') fetchPortfolio();
+      if (page === 'portfolio') {
+        fetchCategories();
+        fetchPortfolio();
+      }
       if (page === 'skills') fetchSkills();
       if (page === 'resume') fetchExperiences();
       if (page === 'digital-product') loadDigitalProducts();
@@ -479,6 +629,13 @@ $(document).ready(function () {
     serviceList()
     activateSectionFromUrl();
     setInterac()
+
+    // Event handler for items per page change
+    $('#itemsPerPage').on('change', function() {
+        const newLimit = parseInt($(this).val());
+        currentLimit = newLimit;
+        fetchPortfolio(undefined, 1, newLimit); // Reset to first page with new limit
+    });
 
     // Event: klik nav-link (tab utama)
     $('[data-nav-link]').on('click', function() {

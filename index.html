@@ -409,54 +409,37 @@
         <section class="projects">
 
           <ul class="filter-list">
-
-            <li class="filter-item">
-              <button class="active" data-filter-btn>All</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>UI/UX</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>Web development</button>
-            </li>
-
+            <!-- Categories will be loaded dynamically -->
           </ul>
 
           <div class="filter-select-box">
-
             <button class="filter-select" data-select>
-
               <div class="select-value" data-selecct-value>Select category</div>
-
               <div class="select-icon">
                 <ion-icon name="chevron-down"></ion-icon>
               </div>
-
             </button>
-
             <ul class="select-list">
-
-              <li class="select-item">
-                <button data-select-item>All</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>UI/UX</button>
-              </li>
-              <li class="select-item">
-                <button data-select-item>Web development</button>
-              </li>
-
+              <!-- Categories will be loaded dynamically -->
             </ul>
 
           </div>
 
+          <!-- Items per page selector -->
+          <div class="items-per-page">
+            <label for="itemsPerPage">Show:</label>
+            <select id="itemsPerPage" class="items-per-page-select">
+              <option value="10">10</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+            <span>items</span>
+          </div>
+
           <ul class="project-list">
-
-
           </ul>
+
+          <div class="portfolio-pagination"></div>
 
           <!-- Add Portfolio Modal -->
           <div class="portfolio-modal" id="portfolioModal">

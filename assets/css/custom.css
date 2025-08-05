@@ -190,6 +190,54 @@ main {
     flex: 0 0 360px;
   }
 }
+/* Items per page styles */
+.items-per-page {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  justify-content: flex-end;
+  padding-right: 20px;
+  color: var(--light-gray);
+}
+
+.items-per-page label {
+  font-size: 0.95em;
+}
+
+.items-per-page span {
+  font-size: 0.95em;
+}
+
+.items-per-page-select {
+  padding: 8px 12px;
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  background: var(--eerie-black-2);
+  color: var(--orange-yellow-crayola);
+  cursor: pointer;
+  font-size: 0.95em;
+  transition: all 0.3s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFB456' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+  padding-right: 32px;
+}
+
+.items-per-page-select:hover {
+  border-color: var(--orange-yellow-crayola);
+  box-shadow: 0 0 0 2px rgba(255, 180, 86, 0.1);
+}
+
+.items-per-page-select:focus {
+  outline: none;
+  border-color: var(--orange-yellow-crayola);
+  box-shadow: 0 0 0 2px rgba(255, 180, 86, 0.2);
+}
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -335,7 +383,25 @@ main {
   background: var(--bg-gradient-yellow-1);
   color: var(--eerie-black-1);
 }
+
 @media (max-width: 600px) {
+  .items-per-page {
+    justify-content: center;
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .items-per-page label,
+  .items-per-page span {
+    font-size: 0.9em;
+  }
+
+  .items-per-page-select {
+    padding: 6px 28px 6px 10px;
+    font-size: 0.9em;
+    background-size: 14px;
+  }
+
   .digital-product-card {
     padding: 14px 6px 18px 6px;
   }
