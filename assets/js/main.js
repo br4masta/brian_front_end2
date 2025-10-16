@@ -11,10 +11,15 @@ $(document).ajaxStop(function() {
 });
 
 function serviceList() {
-    data = [{
+    data = [
+    {
         img: `./assets/images/icon-dev.svg`,
         title: `Web development`,
         description: `High-quality development of sites at the professional level.`
+    },{
+        img: `./assets/images/icon-dev.svg`,
+        title: `Mobile development`,
+        description: `High-quality development of mobile dev at the professional level.`
     }, {
         img: `./assets/images/icon-design.svg`,
         title: `Web design`,
