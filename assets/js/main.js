@@ -387,6 +387,8 @@ function fetchPortfolio(filterCategory, page = 1, limit = currentLimit) {
             // Generate HTML for portfolio items
             let html = '';
             dataPortfolio.forEach((item, index) => {
+                const skills = item.modalContent?.skills || [];
+                // console.log('item test 2', skills.slice(0, 4))
                 html += `<li class="project-item active" data-filter-item data-category="${item.category}" data-project-index="${index}">
                     <a href="javascript:void(0)" class="project-link">
                         <figure class="project-img">
@@ -395,10 +397,17 @@ function fetchPortfolio(filterCategory, page = 1, limit = currentLimit) {
                             </div>
                             <img src="${item.sourceGambar}" alt="${item.judul}" loading="lazy" style="height: 145.859px; object-fit: contain;">
                         </figure>
+                        <ul class="project-skills">
+                            ${skills.slice(0, 4).map((skill, index) => (
+                                `<li key=${index} style="font-size:10px">${skill}</li>`
+                            )).join('')}
+                            ${skills.length > 4 ? `<li>...</li>`:``}
+                        </ul>
                         <h3 class="project-title">${item.judul}</h3>
                         <p class="project-category">${item.category}</p>
                     </a>
                 </li>`;
+                // console.log('item test', item.modalContent?.skills)
             });
 
             $('.project-list').html(html);
