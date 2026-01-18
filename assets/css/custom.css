@@ -124,13 +124,13 @@ main {
   display: none;
 }
 .articles-slider {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 20px;
   padding: 10px 5px;
-  flex-direction: column;
 }
 .article-card {
-  flex: 0 0 300px;
+  width: 100%;
   background: var(--modal-bg);
   border: 1px solid var(--border-primary);
   border-radius: 20px;
@@ -184,6 +184,11 @@ main {
   font-size: 0.8em;
   color: var(--text-light);
   margin-top: 10px;
+}
+@media (min-width: 768px) {
+  .articles-slider {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 @media (max-width: 580px) {
   .article-card {
