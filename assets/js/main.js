@@ -20,17 +20,18 @@ function serviceList() {
         img: `./assets/images/icon-dev.svg`,
         title: `Mobile development`,
         description: `High-quality development of mobile dev at the professional level.`
-    }, {
+    }, 
+    {
         img: `./assets/images/icon-design.svg`,
         title: `Web design`,
         description: `The most modern and high-quality design made at a professional level.`
     },
-    {
-        img: `./assets/images/icon-dev.svg`,
-        title: `Selling Digital Product`,
-        description: `A collection of ready-to-use digital products. Click to see details and purchase.`,
-        isDigitalProduct: true
-    }
+    // {
+    //     img: `./assets/images/icon-dev.svg`,
+    //     title: `Selling Digital Product`,
+    //     description: `A collection of ready-to-use digital products. Click to see details and purchase.`,
+    //     isDigitalProduct: true
+    // }
     ]
 
     let html = '';
