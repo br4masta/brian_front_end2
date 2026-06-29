@@ -1,4 +1,4 @@
-import { QueryClient, QueryObserver } from '@tanstack/query-core';
+import { QueryClient, QueryObserver } from 'https://esm.sh/@tanstack/query-core@5.59.20';
 
 let urlapi = "https://my-next-firebase-app-git-master-br4mastas-projects.vercel.app"
 // let urlapi = "http://localhost:3000"
@@ -37,7 +37,7 @@ $(document).ajaxStop(function() {
 });
 
 function serviceList() {
-    data = [
+    const data = [
     {
         img: `./assets/images/icon-dev.svg`,
         title: `Web development`,
@@ -719,6 +719,15 @@ $(document).ready(function () {
       }
     });
 });
+
+// Expose functions to global scope for HTML onclick handlers
+window.serviceList = serviceList;
+window.fetchSkills = fetchSkills;
+window.fetchExperiences = fetchExperiences;
+window.fetchPortfolio = fetchPortfolio;
+window.fetchCategories = fetchCategories;
+window.loadMediumArticles = loadMediumArticles;
+window.loadDigitalProducts = loadDigitalProducts;
 
 function loadMediumArticles() {
   const mediumUsername = '@brianaldybramasta';
