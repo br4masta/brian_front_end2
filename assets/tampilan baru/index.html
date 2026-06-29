@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brian Aldy Bramasta,Here!🐣</title>
+  <meta name="description" content="Brian Aldy Bramasta is a Web Developer Developer and UI/UX enthusiast with a keen interest in creating user interfaces. I specialize in using design tools like Figma and Adobe XD to craft responsive user interfaces, and I am proficient in programming languages such as JavaScript and PHP to build dynamic web applications. Additionally, I have experience in conducting user research and performing user testing to enhance the overall user experience. Currently, I am actively working as a Web Developer Developer at a software house in Surabaya." />
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/new_asset/brian profil 2.png" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/custom.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <style>
+    #top-marquee {
+      opacity: 0;
+      transition: opacity 0.7s cubic-bezier(.4,0,.2,1);
+    }
+    #top-marquee.show {
+      opacity: 1;
+    }
+    .project-skills {
+      list-style-type: disc;
+      /* padding-left: 20px;
+      margin-top: 10px; */
+    }
+    .project-skills {
+      margin-bottom: 5px;
+    }
+  </style>
+  <!-- Pesan berjalan di paling atas -->
+  <div id="top-marquee" style="width:100vw;position:fixed;top:0;left:0;z-index:9999;background:linear-gradient(90deg,#ffdb6e,#ffbc5e);color:#222;font-weight:600;font-family:'Poppins',sans-serif;padding:7px 0;box-shadow:0 2px 8px rgba(0,0,0,0.08);overflow:hidden;">
+    <marquee behavior="scroll" direction="left" scrollamount="7" style="font-size:1em;letter-spacing:1px;">Please perform a hard reload to update the appearance by pressing Ctrl + Shift + F5.</marquee>
+  </div>
+  <script>
+    // Fade in
+    // window.addEventListener('DOMContentLoaded',function(){
+    //   setTimeout(function(){
+    //     var m=document.getElementById('top-marquee');
+    //     if(m) m.classList.add('show');
+    //   },100);
+    //   // Fade out after 5s
+    //   setTimeout(function(){
+    //     var m=document.getElementById('top-marquee');
+    //     if(m) m.classList.remove('show');
+    //   },15000);
+    //   // Remove from DOM after fade out
+    //   setTimeout(function(){
+    //     var m=document.getElementById('top-marquee');
+    //     if(m) m.style.display='none';
+    //   },15700);
+    // });
+  </script>
+
+  <!-- Add background audio -->
+  <audio id="bgAudio" loop autoplay muted>
+    <source src="./assets/audio/audio-1.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="video-background">
+    <video autoplay muted loop playsinline>
+      <source src="./assets/videos/background2.mp4" type="video/mp4">
+      <!-- Add more source elements for different video formats if needed -->
+    </video>
+    <div class="video-overlay"></div>
+  </div>
+
+  <!--
+    - #MAIN
+  -->
+
+  <main>
+
+    <!--
+      - #SIDEBAR
+    -->
+
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+
+        <figure class="avatar-box">
+          <img src="./assets/images/new_asset/brian_black_bg_squere.png" alt="Brian Bramasta" width="80">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="Brian Aldy Bramasta">Brian Bramasta</h1>
+
+          <p class="title" style="color:white">Web Developer</p>
+        </div>
+
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+
+      </div>
+
+      <div class="sidebar-info_more">
+
+        <div class="separator"></div>
+
+        <ul class="contacts-list">
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+
+              <a href="mailto:Brianaldybramasta@gmail.com" class="contact-link">Brianaldybramasta@gmail.com</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="phone-portrait-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Phone</p>
+              <a href="tel:+62895397115216" class="contact-link">+62-895397115216</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="calendar-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <!-- <p class="contact-title">Birthday</p>
+
+              <time datetime="1982-06-23">January 27, 2000</time> -->
+              <p class="contact-title">Age</p>
+              <p class="contact-link">26 years old</p>
+
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Location</p>
+
+              <address>Surabaya, East Java, INA</address>
+            </div>
+
+          </li>
+
+        </ul>
+
+        <div class="separator"></div>
+
+        <ul class="social-list">
+
+          <li class="social-item">
+            <a href="https://www.linkedin.com/in/brian-aldy-bramasta-718755186/" target='_blank' class="float d-flex align-items-center justify-content-center">
+              <img src="./assets/images/new_asset/LinkedIn 2.png" alt="" width="18px" />
+            </a>
+          </li>
+          <li class="social-item">
+            <a href="https://www.instagram.com/br4masta/" target='_blank' class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </aside>
+
+
+
+
+
+    <!--
+      - #main-content
+    -->
+
+    <div class="main-content">
+
+      <!--
+        - #NAVBAR
+      -->
+
+      <nav class="navbar">
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <button class="audio-control" id="audioControl" aria-label="Toggle audio">
+              <ion-icon name="volume-mute-outline"></ion-icon>
+            </button>
+          </li>
+          <li class="navbar-item">
+            <button class="navbar-link theme-toggle" aria-label="Toggle theme" data-theme-toggle>
+              <ion-icon name="contrast-outline"></ion-icon>
+            </button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link  active" data-nav-link data-page-target="about" onclick="serviceList()">About</button>
+          </li>
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link data-page-target="skills" onclick="fetchSkills()">Skills</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link data-page-target="resume" onclick="fetchExperiences()">Resume</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link data-page-target="portfolio" onclick="fetchPortfolio()">Portfolio</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link data-page-target="article" onclick="loadMediumArticles()">Article</button>
+          </li>
+
+          <li class="navbar-item" style="display:none">
+            <button class="navbar-link" data-nav-link data-page-target="digital-product" onclick="loadDigitalProducts()">Digital Product</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link data-page-target="contact">Contact</button>
+          </li>
+
+        </ul>
+
+      </nav>
+
+
+
+
+
+      <!--
+        - #ABOUT
+      -->
+
+      <article class="about  active" data-page="about">
+        <header>
+          <h2 class="h2 article-title">About me</h2>
+        </header>
+
+        <section class="about-text">
+          <p>
+            I am a Web Developer with 3 years of experience specializing in building fast, responsive, and efficient web applications. With expertise in JavaScript, PHP, React.js, Laravel, and Quasar (Vue.js), I focus on delivering high-performance solutions that enhance user satisfaction. I thrive on optimizing application speed and ensuring scalability, always staying ahead of the latest web technologies.
+          </p>
+        </section>
+
+        <!--
+          - service
+        -->
+
+        <section class="service">
+          <h3 class="h3 service-title">What i'm doing</h3>
+          <ul class="service-list">
+            <!-- custom js -->
+
+
+          </ul>
+
+        </section>
+
+
+
+        <div class="modal-container" data-modal-container>
+
+          <div class="overlay" data-overlay></div>
+
+          <section class="testimonials-modal">
+
+            <button class="modal-close-x close-modall" data-modal-close-btn>
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+
+            <div class="modal-img-wrapper">
+              <figure class="modal-avatar-box">
+                <img src="./assets/images/avatar-1.png" alt="Daniel lewis" width="80" data-modal-img>
+              </figure>
+
+              <img src="./assets/images/icon-quote.svg" alt="quote icon">
+            </div>
+
+            <div class="modal-content">
+
+              <h4 class="h3 modal-title" data-modal-title>Daniel lewis</h4>
+
+              <time datetime="2021-06-14">14 June, 2021</time>
+
+              <div data-modal-text>
+                <p>
+                  Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
+                  lot of experience
+                  and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
+                  consectetur adipiscing
+                  elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
+                </p>
+              </div>
+
+            </div>
+
+          </section>
+
+        </div>
+
+
+      </article>
+
+      <article class="skills " data-page="skills">
+        <header>
+          <h2 class="h2 article-title">My Skills</h2>
+        </header>
+        <section class="skills-text">
+          <div class="wrap-image parent-skills">
+
+          </div>
+
+        </section>
+
+
+
+      </article>
+
+
+
+
+
+      <!--
+        - #RESUME
+      -->
+
+      <article class="resume" data-page="resume">
+
+        <header>
+          <h2 class="h2 article-title">Resume</h2>
+        </header>
+
+        <a href="https://docs.google.com/document/d/1OTFoNhOLkzCm4MaUnrUKwAtvyV41m0S-eqlogxjZtL4/edit?tab=t.0"
+          target='_blank' class="form-btn resume-btn" data-form-btn="">
+          <span>Resume</span>
+        </a>
+
+        <section class="timeline">
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+            <h3 class="h3">Education</h3>
+          </div>
+          <ol class="timeline-list education">
+          </ol>
+
+        </section>
+
+        <section class="timeline">
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+            <h3 class="h3">Experience</h3>
+          </div>
+          <ol class="timeline-list experience">
+          </ol>
+        </section>
+
+
+
+
+      </article>
+
+
+
+
+
+      <!--
+        - #PORTFOLIO
+      -->
+
+      <article class="portfolio" data-page="portfolio">
+
+        <header>
+          <h2 class="h2 article-title">Portfolio</h2>
+        </header>
+
+        <section class="projects">
+
+          <ul class="filter-list">
+            <!-- Categories will be loaded dynamically -->
+          </ul>
+
+          <div class="filter-select-box">
+            <button class="filter-select" data-select>
+              <div class="select-value" data-selecct-value>Select category</div>
+              <div class="select-icon">
+                <ion-icon name="chevron-down"></ion-icon>
+              </div>
+            </button>
+            <ul class="select-list">
+              <!-- Categories will be loaded dynamically -->
+            </ul>
+
+          </div>
+
+          <!-- Items per page selector -->
+          <div class="items-per-page">
+            <label for="itemsPerPage">Show:</label>
+            <select id="itemsPerPage" class="items-per-page-select">
+              <option value="10">10</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+            <span>items</span>
+          </div>
+
+          <ul class="project-list">
+          </ul>
+
+          <div class="portfolio-pagination"></div>
+
+          <!-- Add Portfolio Modal -->
+          <div class="portfolio-modal" id="portfolioModal">
+            <div class="modal-content">
+              <span class="modal-close-x">&times;</span>
+              <div class="modal-body">
+                <h2 class="modal-title"></h2>
+
+                <div class="modal-image-gallery">
+                  <!-- Images will be inserted here -->
+                </div>
+
+                <div class="project-details">
+                  <div class="detail-section">
+                    <h3>Role</h3>
+                    <p class="project-role"></p>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Project Description</h3>
+                    <p class="project-description"></p>
+                  </div>
+
+                  <div class="detail-section">
+                    <h3>Skills & Deliverables</h3>
+                    <ul class="project-skills"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+      </article>
+
+      <!-- Add this section before the Contact article -->
+      <article class="article" data-page="article">
+        <header>
+          <h2 class="h2 article-title">My Articles</h2>
+        </header>
+
+        <section class="article-feed">
+          <div class="articles-wrapper">
+            <div id="medium-articles" class="articles-slider">
+              <!-- Articles will be loaded here dynamically -->
+            </div>
+            <div class="pagination">
+              <button class="pagination-btn prev" disabled>
+                <ion-icon name="chevron-back-outline"></ion-icon>
+              </button>
+              <div class="pagination-numbers"></div>
+              <button class="pagination-btn next">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </article>
+
+      <!-- Tambahkan section Digital Product sebelum Contact -->
+      <article class="digital-product" data-page="digital-product">
+        <header>
+          <h2 class="h2 article-title">Digital Product</h2>
+        </header>
+        <section class="digital-product-feed">
+          <div class="digital-products-wrapper" id="digital-products">
+            <!-- Digital products akan dimuat di sini secara dinamis -->
+          </div>
+        </section>
+      </article>
+
+      <!--
+        - #CONTACT
+      -->
+
+      <article class="contact" data-page="contact">
+
+        <header>
+          <h2 class="h2 article-title">Contact</h2>
+        </header>
+
+        <section class="mapbox" data-mapbox>
+          <figure>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.418580061671!2d112.76534360990672!3d-7.306782292670585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb89f1c42717%3A0x6858ff81a69f99a3!2sMGE%20Morning%20Glory%20Enterprise!5e0!3m2!1sid!2sid!4v1720278114397!5m2!1sid!2sid"
+              width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </figure>
+        </section>
+
+        <section class="contact-form">
+
+          <h3 class="h3 form-title">Contact Form</h3>
+
+          <form className="contact-form" action="https://formspree.io/f/mknllwqe" method="POST" class="form"
+            data-form>
+
+            <div class="input-wrapper">
+              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
+
+              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+            </div>
+
+            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+
+            <button class="form-btn" type="submit" disabled data-form-btn>
+              <ion-icon name="paper-plane"></ion-icon>
+              <span>Send Message</span>
+            </button>
+
+          </form>
+
+        </section>
+
+      </article>
+
+    </div>
+
+  </main>
+
+
+
+
+
+
+
+  <script src="./assets/js/script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script type="module" src="./assets/js/main.js?v=<?= Date.now() ?>"></script>
+  <script>
+    // Add this before your other scripts
+    document.addEventListener('DOMContentLoaded', function() {
+      const audio = document.getElementById('bgAudio');
+      const audioControl = document.getElementById('audioControl');
+      const audioIcon = audioControl.querySelector('ion-icon');
+
+      // Start muted
+      audio.muted = true;
+       audio.volume = 0.6;
+      audio.play().catch(function(error) {
+        console.log("Auto-play failed:", error);
+      });
+      audioControl.addEventListener('click', function() {
+        if (audio.muted) {
+          audio.muted = false;
+          audio.play();
+          audioIcon.setAttribute('name', 'volume-high-outline');
+        } else {
+          audio.muted = true;
+          audioIcon.setAttribute('name', 'volume-mute-outline');
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>

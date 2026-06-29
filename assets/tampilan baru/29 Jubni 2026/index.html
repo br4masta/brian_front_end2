@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brian Bramasta | Portfolio</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-[#FBFBFA] text-[#37352F] antialiased selection:bg-[#E3E2E0]">
+
+    <nav class="sticky top-0 z-50 bg-[#FBFBFA]/80 backdrop-blur-md border-b border-[#E9E9E6]">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="font-semibold tracking-tight hover:opacity-70 transition">brianaldybramasta.my.id</a>
+            <div class="flex items-center gap-6 text-sm text-[#787774]">
+                <a href="#about" class="hover:text-[#37352F] transition">About</a>
+                <a href="#projects" class="hover:text-[#37352F] transition">Projects</a>
+                <a href="#contact" class="hover:text-[#37352F] transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="about" class="max-w-4xl mx-auto px-6 pt-20 pb-16">
+        <div class="max-w-2xl">
+            <h1 class="text-4xl font-bold tracking-tight text-[#37352F] sm:text-5xl mb-4">
+                Hi, I'm Brian Bramasta.
+            </h1>
+            <p class="text-lg text-[#6B6A65] leading-relaxed mb-6">
+                A Software Engineer specializing in Front-End and Full-Stack web and mobile development. Focused on creating highly functional, structured, and cleanly architected applications.
+            </p>
+            <div class="flex flex-wrap gap-3">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#EED2EE]/40 text-[#693169] text-xs font-medium">
+                    <i data-lucide="code-2" class="w-3.5 h-3.5"></i> Web Development
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#D3E5EF] text-[#184968] text-xs font-medium">
+                    <i data-lucide="smartphone" class="w-3.5 h-3.5"></i> Mobile Development
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#E8E9E8] text-[#43423E] text-xs font-medium">
+                    <i data-lucide="layers" class="w-3.5 h-3.5"></i> Clean Architecture
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <hr class="max-w-4xl mx-auto border-[#E9E9E6] px-6">
+
+    <main id="projects" class="max-w-4xl mx-auto px-6 py-16">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+            <div>
+                <h2 class="text-2xl font-bold tracking-tight">Selected Projects</h2>
+                <p class="text-sm text-[#787774] mt-1">A curated list of components and systems I've built.</p>
+            </div>
+            <div id="filter-container" class="flex gap-1 bg-[#F1F1EF] p-1 rounded-lg text-xs font-medium text-[#787774] self-start sm:self-center">
+                <button data-filter="all" class="px-3 py-1.5 rounded-md bg-white text-[#37352F] shadow-xs cursor-pointer transition">All</button>
+                <button data-filter="web development" class="px-3 py-1.5 rounded-md hover:text-[#37352F] cursor-pointer transition">Web Dev</button>
+                <button data-filter="mobile development" class="px-3 py-1.5 rounded-md hover:text-[#37352F] cursor-pointer transition">Mobile Dev</button>
+            </div>
+        </div>
+
+        <div id="project-grid" class="grid gap-6 sm:grid-cols-2">
+            </div>
+    </main>
+
+    <hr class="max-w-4xl mx-auto border-[#E9E9E6] px-6">
+
+    <footer id="contact" class="max-w-4xl mx-auto px-6 py-16">
+        <h2 class="text-xl font-bold tracking-tight mb-4">Get in touch</h2>
+        <p class="text-[#6B6A65] mb-6 max-w-md">
+            Feel free to reach out for collaboration, or view documentation details via Notion links inside the projects.
+        </p>
+        <div class="flex flex-wrap gap-4 text-sm font-medium">
+            <a href="mailto:brianaldybramasta@gmail.com" class="flex items-center gap-2 text-[#37352F] hover:underline">
+                <i data-lucide="mail" class="w-4 h-4"></i> Email
+            </a>
+            <a href="https://github.com" target="_blank" class="flex items-center gap-2 text-[#37352F] hover:underline">
+                <i data-lucide="github" class="w-4 h-4"></i> GitHub
+            </a>
+        </div>
+        <p class="text-xs text-[#9B9A97] mt-16">
+            &copy; 2026 Brian Bramasta. Built with HTML, Tailwind CSS & JS.
+        </p>
+    </footer>
+
+    <script>
+        // API URL from main.js
+        const API_URL = "https://my-next-firebase-app-git-master-br4mastas-projects.vercel.app/api/portfolio";
+        
+        // Global variables for projects data
+        let projects = [];
+        let projectGrid;
+        let filterButtons;
+
+        // Fetch portfolio data from API
+        async function fetchPortfolioData() {
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                projects = data.portfolioItems;
+                console.log('Projects loaded:', projects);
+                displayProjects('all');
+            } catch (error) {
+                console.error('Error fetching portfolio:', error);
+                projectGrid.innerHTML = '<p class="text-center text-[#6B6A65]">Failed to load projects.</p>';
+            }
+        }
+
+        // Fungsi Render Project Card
+        function displayProjects(filter = 'all') {
+            if (!projects || projects.length === 0) return;
+            console.log('Displaying projects with filter:', projects);
+            projectGrid.innerHTML = '';
+            
+            const filteredProjects = filter === 'all' 
+                ? projects 
+                : projects.filter(p => p.category === filter);
+
+            filteredProjects.forEach(project => {
+                // Generate tag dari array skills modalContent
+                const tagsHTML = project.modalContent && project.modalContent.skills
+                    ? project.modalContent.skills.map(skill => 
+                        `<span class="px-2 py-0.5 bg-[#F1F1EF] text-[#43423E] rounded text-[11px] font-normal border border-[#E9E9E6]">${skill}</span>`
+                      ).join('')
+                    : '';
+
+                // Memastikan deskripsi tidak kosong atau hanya strip
+                const rawDesc = project.modalContent?.description;
+                const cleanDesc = (rawDesc && rawDesc !== "-") ? rawDesc : "No detailed description available.";
+
+                // Link eksternal preferensi: Notion/Detail Link jika ada, jika tidak pakai href utama
+                const targetLink = (project.linkDetail && project.linkDetail !== "-") ? project.linkDetail : project.href;
+
+                const card = `
+                    <div class="group flex flex-col justify-between bg-white border border-[#E9E9E6] rounded-xl hover:border-[#D3D3D0] hover:shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition duration-200 overflow-hidden">
+                        <div class="relative aspect-video overflow-hidden bg-[#F1F1EF]">
+                            <img src="${project.sourceGambar}" alt="${project.judul}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" loading="lazy">
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-start justify-between mb-2">
+                                <div>
+                                    <span class="text-[10px] uppercase font-bold tracking-wider text-[#9B9A97] block mb-0.5">${project.modalContent?.role || 'Developer'}</span>
+                                    <h3 class="font-semibold text-[#37352F] text-base group-hover:text-blue-600 transition">
+                                        ${project.judul}
+                                    </h3>
+                                </div>
+                            </div>
+                            <p class="text-sm text-[#6B6A65] leading-relaxed mb-4 line-clamp-3">
+                                ${cleanDesc}
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                ${tagsHTML}
+                            </div>
+                            <div class="flex gap-2 mt-auto">
+                                ${project.href && project.href !== "#" ? `
+                                    <a href="${project.href}" target="_blank" rel="noopener noreferrer" class="flex-1 text-center px-3 py-2 bg-[#37352F] text-white text-xs font-medium rounded hover:bg-[#2A2A28] transition">
+                                        View Website
+                                    </a>
+                                ` : ''}
+                                ${project.linkDetail && project.linkDetail !== "#" && project.linkDetail !== "-" ? `
+                                    <a href="${project.linkDetail}" target="_blank" rel="noopener noreferrer" class="flex-1 text-center px-3 py-2 bg-[#F1F1EF] text-[#37352F] text-xs font-medium rounded hover:bg-[#E9E9E6] transition">
+                                        Documentation
+                                    </a>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                projectGrid.insertAdjacentHTML('beforeend', card);
+            });
+            
+            // Re-render icon lucide setiap kali item berubah
+            lucide.createIcons();
+        }
+
+        // Initialize lucide icons and fetch data
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get DOM elements after DOM is loaded
+            projectGrid = document.getElementById('project-grid');
+            filterButtons = document.querySelectorAll('#filter-container button');
+            
+            lucide.createIcons();
+            fetchPortfolioData();
+
+            // Event handler untuk tombol filter
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('bg-white', 'text-[#37352F]', 'shadow-xs');
+                        btn.classList.add('hover:text-[#37352F]');
+                    });
+
+                    button.classList.add('bg-white', 'text-[#37352F]', 'shadow-xs');
+                    button.classList.remove('hover:text-[#37352F]');
+
+                    displayProjects(button.getAttribute('data-filter'));
+                });
+            });
+        });
+    </script>
+</body>
+</html>
