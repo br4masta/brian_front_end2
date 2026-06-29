@@ -1,5 +1,31 @@
+import { QueryClient, QueryObserver } from '@tanstack/query-core';
+
 let urlapi = "https://my-next-firebase-app-git-master-br4mastas-projects.vercel.app"
 // let urlapi = "http://localhost:3000"
+
+// Setup TanStack Query Client
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            staleTime: 5 * 60 * 1000, // 5 minutes
+            cacheTime: 10 * 60 * 1000, // 10 minutes
+            retry: 1,
+        },
+    },
+});
+
+// Custom fetcher using jQuery AJAX
+function createQueryFetcher(url, options = {}) {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: url,
+            method: options.method || 'GET',
+            data: options.data,
+            success: resolve,
+            error: (xhr, status, error) => reject(error),
+        });
+    });
+}
 
 // Setup global AJAX handlers
 $(document).ajaxStart(function() {
@@ -94,10 +120,14 @@ function serviceList() {
 
 
 function fetchExperiences() {
-    $.ajax({
-        url: urlapi+'/api/experiences',
-        method: 'GET',
-        success: function(response) {
+    const observer = new QueryObserver(queryClient, {
+        queryKey: ['experiences'],
+        queryFn: () => createQueryFetcher(`${urlapi}/api/experiences`),
+    });
+
+    const unsubscribe = observer.subscribe((result) => {
+        if (result.data) {
+            const response = result.data;
             // Separate work and education experiences
             const workExperiences = response.experiences.filter(exp => exp.type === 'work');
             const educationExperiences = response.experiences.filter(exp => exp.type === 'education');
@@ -129,10 +159,10 @@ function fetchExperiences() {
             // Update the DOM
             $('.experience').html(workHtml);
             $('.education').html(educationHtml);
-        },
-        error: function(xhr, status, error) {
-            console.error('Error fetching experiences:', error);
-            // Display error message to user
+        }
+        
+        if (result.error) {
+            console.error('Error fetching experiences:', result.error);
             $('.experience').html('<p>Failed to load work experience data.</p>');
             $('.education').html('<p>Failed to load education data.</p>');
         }
@@ -140,10 +170,14 @@ function fetchExperiences() {
 }
 
 function fetchSkills() {
-    $.ajax({
-        url: urlapi+'/api/skills',
-        method: 'GET',
-        success: function(response) {
+    const observer = new QueryObserver(queryClient, {
+        queryKey: ['skills'],
+        queryFn: () => createQueryFetcher(`${urlapi}/api/skills`),
+    });
+
+    const unsubscribe = observer.subscribe((result) => {
+        if (result.data) {
+            const response = result.data;
             // Filter skills by status
             const currentSkills = response.skills.filter(skill => skill.status === 'current');
             const aiSkills = response.skills.filter(skill => skill.status === 'ai');
@@ -187,9 +221,10 @@ function fetchSkills() {
             $('.parent-skills').html(currentHtml);
             $('.parent-skills').after(learningHtml);
             $('.parent-skills').after(aiHtml);
-        },
-        error: function(xhr, status, error) {
-            console.error('Error fetching skills:', error);
+        }
+        
+        if (result.error) {
+            console.error('Error fetching skills:', result.error);
             $('.parent-skills').html('<p>Failed to load skills data.</p>');
         }
     });
@@ -295,10 +330,14 @@ let currentLimit = 10; // Store current limit globally
 
 // Function to fetch and render categories
 function fetchCategories() {
-    $.ajax({
-        url: `${urlapi}/api/portfolio/categories`,
-        method: 'GET',
-        success: function(response) {
+    const observer = new QueryObserver(queryClient, {
+        queryKey: ['portfolio-categories'],
+        queryFn: () => createQueryFetcher(`${urlapi}/api/portfolio/categories`),
+    });
+
+    const unsubscribe = observer.subscribe((result) => {
+        if (result.data) {
+            const response = result.data;
             // Generate HTML for filter list
             let filterListHtml = `
                 <li class="filter-item">
@@ -363,9 +402,10 @@ function fetchCategories() {
                 
                 fetchPortfolio(category);
             });
-        },
-        error: function(xhr, status, error) {
-            console.error('Error fetching categories:', error);
+        }
+        
+        if (result.error) {
+            console.error('Error fetching categories:', result.error);
         }
     });
 }
@@ -379,10 +419,15 @@ function fetchPortfolio(filterCategory, page = 1, limit = currentLimit) {
         url.searchParams.set('category', filterCategory);
     }
 
-    $.ajax({
-        url: url.toString(),
-        method: 'GET',
-        success: function(response) {
+    const queryKey = ['portfolio', filterCategory, page, limit];
+    const observer = new QueryObserver(queryClient, {
+        queryKey: queryKey,
+        queryFn: () => createQueryFetcher(url.toString()),
+    });
+
+    const unsubscribe = observer.subscribe((result) => {
+        if (result.data) {
+            const response = result.data;
             dataPortfolio = response.items; // Store for modal use
             
             // Generate HTML for portfolio items
@@ -596,9 +641,10 @@ function fetchPortfolio(filterCategory, page = 1, limit = currentLimit) {
                 //     $(".filter-list button:contains('UI/UX')").addClass('active');
                 // }
             }
-        },
-        error: function(xhr, status, error) {
-            console.error('Error fetching portfolio:', error);
+        }
+        
+        if (result.error) {
+            console.error('Error fetching portfolio:', result.error);
             $('.project-list').html('<p>Failed to load portfolio items.</p>');
             $('.portfolio-pagination').html('');
         }
