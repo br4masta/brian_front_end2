@@ -36,7 +36,7 @@ Frontend Engineer dengan pengalaman lebih dari **4 tahun** dalam mengembangkan a
 
 **Tech Stack**
 
-`React.js` `TypeScript` `Redux` `Tailwind CSS` `REST API`
+`React.js` `Tanstack` `TypeScript` `Zustand` `Tailwind CSS` `REST API` 
 
 **Tanggung Jawab**
 
@@ -45,6 +45,7 @@ Frontend Engineer dengan pengalaman lebih dari **4 tahun** dalam mengembangkan a
 - Berkolaborasi dengan Backend Engineer, QA Engineer, UI/UX Designer, serta Product Owner dalam proses pengembangan fitur.
 - Mengintegrasikan RESTful API serta menyesuaikan implementasi frontend terhadap perubahan spesifikasi API.
 - Meningkatkan kemudahan pemeliharaan aplikasi melalui penerapan reusable component dan praktik clean code.
+- support dalam pembuatan internal project lainnya
 
 ---
 
