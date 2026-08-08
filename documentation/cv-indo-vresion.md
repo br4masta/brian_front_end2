@@ -1,174 +1,133 @@
-
 # Brian Aldy Bramasta
+
 **Frontend Engineer**
 
-📍 Surabaya, Indonesia  
-📧 brianaldybramasta@gmail.com | 📱 +62 895-3971-15216  
-🌐 https://brianaldybramasta.my.id | 💼 LinkedIn
+Surabaya, Indonesia | +62 895-3971-15216 | [brianaldybramasta@gmail.com](mailto:brianaldybramasta@gmail.com)
+Portfolio: http://brianaldybramasta.my.id | LinkedIn: Brian Aldy Bramasta
 
 ---
 
-## RINGKASAN PROFIL
+## PROFESSIONAL SUMMARY
 
-Frontend Engineer dengan pengalaman lebih dari **4 tahun** dalam mengembangkan aplikasi web yang scalable, responsif, dan mudah dipelihara menggunakan **React.js, Vue.js, Next.js**, serta teknologi JavaScript modern. Berpengalaman membangun arsitektur komponen yang reusable, mengintegrasikan RESTful API, mengoptimalkan performa aplikasi, serta berkolaborasi dengan tim lintas fungsi untuk menghasilkan produk digital yang andal dan berkualitas.
-
----
-
-## KEAHLIAN TEKNIS
-
-| Kategori | Keahlian |
-|----------|----------|
-| **Frontend** | React.js · Next.js · Vue.js · Quasar Framework · HTML · CSS · JavaScript · Tailwind CSS · Bootstrap |
-| **State Management** | Redux · Zustand · Vuex |
-| **Backend** | Express.js · Laravel · Firebase · Supabase · REST API |
-| **Database** | MySQL · PostgreSQL · SQL Server · MongoDB |
-| **Testing** | Jest · Playwright (Dasar) |
-| **Tools** | Git · GitHub · Docker · Postman · VS Code · Figma |
-| **Lainnya** | Optimasi Performa · Responsive Web Design · Component-Based Architecture · Agile Development · n8n |
+Frontend Engineer dengan pengalaman 4+ tahun dalam membangun dan memelihara aplikasi web menggunakan **React.js, Vue.js, Next.js, TypeScript**, dan teknologi JavaScript modern. Berpengalaman dalam membangun reusable component, mengintegrasikan RESTful API, mengembangkan responsive web application, serta meningkatkan maintainability dan performa aplikasi. Terbiasa berkolaborasi dengan Backend Engineer, QA Engineer, UI/UX Designer, dan Product Owner dalam pengembangan produk digital.
 
 ---
 
-# PENGALAMAN KERJA
+## TECHNICAL SKILLS
 
-## Frontend Developer
-### PT. Garuda Lintas Cakrawala
-**November 2025 – Sekarang | Malang, Indonesia**
+**Frontend:** React.js, Next.js, Vue.js, Quasar Framework, HTML, CSS, JavaScript, TypeScript, Tailwind CSS, Bootstrap
 
-**Tech Stack**
+**State Management:** Redux, Zustand, Vuex
 
-`React.js` `Tanstack` `TypeScript` `Zustand` `Tailwind CSS` `REST API` 
+**Backend:** Express.js, Laravel, Firebase, Supabase, RESTful API
 
-**Tanggung Jawab**
+**Database:** MySQL, PostgreSQL, SQL Server, MongoDB
 
-- Mengembangkan dan memelihara modul HRIS (Human Resource Information System) untuk mendukung proses administrasi karyawan dan rekrutmen.
-- Membangun komponen UI yang reusable dan responsif sehingga meningkatkan konsistensi pengembangan pada berbagai modul aplikasi.
-- Berkolaborasi dengan Backend Engineer, QA Engineer, UI/UX Designer, serta Product Owner dalam proses pengembangan fitur.
-- Mengintegrasikan RESTful API serta menyesuaikan implementasi frontend terhadap perubahan spesifikasi API.
-- Meningkatkan kemudahan pemeliharaan aplikasi melalui penerapan reusable component dan praktik clean code.
-- support dalam pembuatan internal project lainnya
+**Testing:** Jest, Playwright
+
+**Tools:** Git, GitHub, Docker, Postman, VS Code, Figma, VPS server
+
+**Other:** Responsive Web Design, Component-Based Architecture, Performance Optimization, Agile Development
 
 ---
 
-## Full Stack Developer (Side Project)
-### Freelancer Independen
-**Februari 2024 – Oktober 2025**
+## PROFESSIONAL EXPERIENCE
 
-**Tech Stack**
+### Frontend Developer
 
-`Vue.js` `Quasar SSR` `Express.js` `MySQL`
+**PT. Garuda Lintas Cakrawala**
+**November 2025 – Present | Malang, Indonesia**
 
-**Tanggung Jawab**
+**Tech Stack:** React.js, TypeScript, TanStack, Zustand, Tailwind CSS, RESTful API
 
-- Merancang dan mengembangkan aplikasi web end-to-end sesuai kebutuhan bisnis klien.
-- Membangun aplikasi menggunakan Quasar Framework dengan Server-Side Rendering (SSR) untuk meningkatkan performa dan SEO.
-- Mengembangkan komponen frontend yang reusable sehingga mempermudah pengembangan fitur berikutnya.
-- Mendesain struktur database relasional dan mengimplementasikan RESTful API.
-- Mengelola seluruh siklus pengembangan aplikasi mulai dari analisis kebutuhan, pengembangan, pengujian, deployment, hingga maintenance.
-- Melakukan optimasi performa aplikasi melalui implementasi SSR dan praktik pengembangan frontend yang baik.
+* Mengembangkan dan memelihara modul **Human Resource Information System (HRIS)** untuk mendukung proses administrasi karyawan dan rekrutmen.
+* Membangun **reusable UI components** untuk meningkatkan konsistensi antarmuka dan mempermudah pengembangan lintas modul.
+* Mengintegrasikan **RESTful API** serta menyesuaikan implementasi frontend terhadap perubahan kontrak dan spesifikasi API.
+* Menerapkan praktik **clean code** dan component-based architecture untuk meningkatkan maintainability aplikasi.
+* Berkolaborasi dengan Backend Engineer, QA Engineer, UI/UX Designer, dan Product Owner dalam proses pengembangan dan delivery fitur.
+* Berkontribusi dalam pengembangan internal tools dan project perusahaan lainnya sesuai kebutuhan bisnis.
 
----
+### Full Stack Developer — Freelance
 
-## Frontend Developer (Freelance)
-### PT. Order Kuota
-**Juli 2025 – September 2025 | Mojokerto, Indonesia**
+**Freelancer Independen**
+**February 2024 – October 2025**
 
-**Tech Stack**
+**Tech Stack:** Vue.js, Quasar Framework, Quasar SSR, Express.js, MySQL
 
-`Next.js` `React.js` `REST API`
+* Merancang dan mengembangkan aplikasi web **end-to-end** berdasarkan kebutuhan bisnis klien.
+* Mengembangkan aplikasi menggunakan **Vue.js dan Quasar Framework** dengan Server-Side Rendering (SSR) untuk mendukung performa dan SEO.
+* Membangun reusable frontend components untuk meningkatkan konsistensi dan maintainability aplikasi.
+* Mendesain struktur database relasional dan mengembangkan **RESTful API** menggunakan Express.js.
+* Menangani seluruh siklus pengembangan aplikasi, mulai dari requirement analysis, development, testing, deployment, hingga maintenance.
+* Melakukan optimasi performa aplikasi dan memastikan aplikasi berjalan stabil di lingkungan produksi.
 
-**Tanggung Jawab**
+### Frontend Developer — Freelance
 
-- Mengembangkan dashboard monitoring untuk membantu proses pemantauan operasional internal.
-- Berkolaborasi dengan Backend Engineer dalam mendefinisikan kontrak API.
-- Membangun komponen dashboard yang reusable agar lebih mudah dikembangkan di masa mendatang.
-- Melakukan deployment serta memastikan aplikasi tetap stabil di lingkungan produksi.
+**PT. Order Kuota**
+**July 2025 – September 2025 | Mojokerto, Indonesia**
 
----
+**Tech Stack:** Next.js, React.js, RESTful API
 
-## Frontend Developer
-### Morning Glory Enterprise
-**Februari 2023 – Mei 2025 | Surabaya, Indonesia**
+* Mengembangkan **dashboard monitoring** untuk mendukung pemantauan operasional internal.
+* Membangun reusable components menggunakan React.js dan Next.js untuk mendukung pengembangan fitur secara konsisten.
+* Mengintegrasikan RESTful API untuk menampilkan dan mengelola data operasional.
+* Berkolaborasi dengan Backend Engineer dalam mendefinisikan dan menyesuaikan kontrak API.
+* Melakukan deployment dan memastikan aplikasi berjalan stabil pada lingkungan produksi.
 
-**Tech Stack**
+### Frontend Developer
 
-`Vue.js` `React.js` `JavaScript`
+**Morning Glory Enterprise**
+**February 2023 – May 2025 | Surabaya, Indonesia**
 
-**Tanggung Jawab**
+**Tech Stack:** PHP, Vue.js, React.js, JavaScript, RESTful API
 
-- Mengembangkan antarmuka web yang responsif untuk berbagai proyek klien.
-- Mengubah desain dari Figma menjadi implementasi frontend yang siap digunakan di lingkungan produksi.
-- Mengintegrasikan RESTful API dan layanan pihak ketiga sesuai kebutuhan aplikasi.
-- Melakukan optimasi performa aplikasi untuk meningkatkan pengalaman pengguna.
-- Berkolaborasi dengan UI/UX Designer, Backend Developer, QA Engineer, dan Project Manager selama proses pengembangan.
+* Mengembangkan responsive web applications untuk berbagai kebutuhan dan proyek klien.
+* Mengimplementasikan desain UI dari **Figma** menjadi frontend application yang siap digunakan di lingkungan produksi.
+* Membangun reusable components untuk meningkatkan konsistensi dan efisiensi pengembangan.
+* Mengintegrasikan RESTful API dan third-party services sesuai kebutuhan aplikasi.
+* Melakukan optimasi frontend untuk meningkatkan performa dan user experience.
+* Berkolaborasi dengan UI/UX Designer, Backend Developer, QA Engineer, dan Project Manager selama proses pengembangan.
 
----
+### Full Stack Web Developer — Internship
 
-## Full Stack Web Developer (Magang)
-### Universitas Dr. Soetomo
-**April 2021 – Februari 2022 | Surabaya, Indonesia**
-
-**Tech Stack**
-
-`CodeIgniter 4` `PHP` `MySQL`
-
-**Tanggung Jawab**
-
-- Mengembangkan Sistem Manajemen Tugas Akhir untuk membantu proses administrasi dan pemantauan progres mahasiswa.
-- Mendesain struktur database relasional sesuai kebutuhan sistem.
-- Mengembangkan aplikasi Augmented Reality berbasis Markerless User Defined Target sebagai media pembelajaran interaktif.
-- Berpartisipasi dalam seluruh tahapan Software Development Life Cycle (SDLC), mulai dari analisis kebutuhan hingga implementasi.
-
----
-
-# PROYEK PILIHAN
-
-## Sistem HRIS
-**React.js · Redux · REST API**
-
-- Pengelolaan data karyawan
-- Alur proses rekrutmen
-- Library komponen UI yang reusable
-- Integrasi RESTful API
-
----
-
-## Dashboard Monitoring
-**Next.js · React.js**
-
-- Pengembangan dashboard operasional
-- Integrasi API
-- Tampilan responsif
-
----
-
-## Toko Amanah
-**Vue.js · Laravel · MySQL**
-
-- Sistem autentikasi pengguna
-- Manajemen produk
-- Manajemen pesanan
-- Antarmuka responsif
-
----
-
-# PENDIDIKAN
-
-## S1 Teknik Informatika
 **Universitas Dr. Soetomo**
+**April 2021 – February 2022 | Surabaya, Indonesia**
 
+**Tech Stack:** CodeIgniter 4, PHP, MySQL
+
+* Mengembangkan **Sistem Manajemen Tugas Akhir** untuk mendukung administrasi dan pemantauan progres mahasiswa.
+* Mendesain dan mengimplementasikan struktur database relasional menggunakan MySQL.
+* Mengembangkan aplikasi **Augmented Reality** berbasis Markerless User Defined Target sebagai media pembelajaran interaktif.
+* Berpartisipasi dalam tahapan Software Development Life Cycle (SDLC), mulai dari requirement analysis hingga implementation.
+
+---
+
+## SELECTED PROJECTS
+
+
+### HRIS Platform
+
+**React.js, TypeScript, TanStack, Zustand, Tailwind CSS, RESTful API**
+
+* Mengembangkan modul administrasi karyawan dan proses rekrutmen.
+* Membangun reusable UI components untuk digunakan pada berbagai modul aplikasi.
+* Mengintegrasikan RESTful API untuk pengelolaan data karyawan dan proses rekrutmen.
+
+### Operational Monitoring Dashboard
+
+**Next.js · React.js · RESTful API**
+
+* Mengembangkan dashboard untuk membantu proses monitoring operasional internal.
+* Mengintegrasikan RESTful API untuk menampilkan data secara dinamis.
+* Membangun responsive interface untuk berbagai ukuran layar.
+
+---
+
+## EDUCATION
+
+### S1 Teknik Informatika
+
+**Universitas Dr. Soetomo**
 **2018 – 2022**
 
-### Tugas Akhir
-
-Pengembangan Sistem Manajemen Tugas Akhir menggunakan CodeIgniter 4 dan MySQL.
-
-### Penelitian
-
-Pengembangan aplikasi Augmented Reality menggunakan metode Markerless User Defined Target sebagai media pengenalan lingkungan sekolah.
-
----
-
-# BAHASA
-
-- Bahasa Indonesia (Penutur Asli)
-- Bahasa Inggris (Kemampuan Profesional)
+**Final Project:** Sistem Manajemen Tugas Akhir menggunakan CodeIgniter 4 dan MySQL.
