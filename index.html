@@ -39,10 +39,188 @@
 </head>
 
 <body>
+  <div id="loading-cover">
+    <div class="loading-content">
+      <div class="programmer">
+        <div class="computer-screen">
+          <div class="screen-loading"></div>
+        </div>
+        <div class="head"></div>
+        <div class="hair"></div>
+      </div>
+      <div class="typing-indicator">
+        <span>Programmer is checking your request</span>
+        <div class="dots">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="loading-progress"></div>
+        </div>
+        <span class="progress-text" id="progress-text">0%</span>
+      </div>
+    </div>
+  </div>
   <style>
     .project-skills {
       list-style-type: disc;
       margin-bottom: 5px;
+    }
+    #loading-cover {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #0d0d0d 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 0.8s ease-out;
+    }
+    #loading-cover.hide {
+      opacity: 0;
+      transition: opacity 0.8s ease-out;
+      pointer-events: none;
+    }
+    .loading-content {
+      text-align: center;
+    }
+    .programmer {
+      position: relative;
+      width: 120px;
+      height: 180px;
+      margin: 0 auto 30px;
+      background: #2a2a2a;
+      border-radius: 50% 50% 20px 20px;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    }
+    .head {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 35px;
+      background: #3a3a3a;
+      border-radius: 50%;
+    }
+    .hair {
+      position: absolute;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 65px;
+      height: 25px;
+      background: #4a4a4a;
+      border-radius: 50% 50% 0 0;
+    }
+    .computer-screen {
+      position: absolute;
+      top: 55px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 55px;
+      background: #0a0a0a;
+      border-radius: 4px;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+      border: 2px solid #1e1e1e;
+    }
+    .computer-screen::before {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      background: #121212;
+      border-radius: 2px;
+    }
+    .screen-loading {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      height: 3px;
+      background: #2a2a2a;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .screen-loading::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #4a90d9, #6db3f2);
+      animation: loading-bar 1.5s linear forwards;
+    }
+    @keyframes loading-bar {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+    .typing-indicator {
+      font-family: 'Poppins', sans-serif;
+      color: #aaa;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+    .dots {
+      display: inline-block;
+      margin-left: 8px;
+    }
+    .dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: #6db3f2;
+      border-radius: 50%;
+      margin: 0 2px;
+      animation: pulse 1.4s ease-in-out infinite;
+    }
+    .dot:nth-child(1) { animation-delay: 0s; }
+    .dot:nth-child(2) { animation-delay: 0.2s; }
+    .dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes pulse {
+      0%, 80%, 100% { opacity: 0.4; }
+      40% { opacity: 1; }
+    }
+    .progress-container {
+      width: 200px;
+      height: 8px;
+      background: #2a2a2a;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 100%;
+      background: #1e1e1e;
+      display: flex;
+      overflow: hidden;
+    }
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #4a90d9, #6db3f2);
+      transition: width 0.3s ease;
+    }
+    .progress-text {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      color: #888;
+      font-size: 12px;
+      font-family: 'Poppins', sans-serif;
     }
   </style>
 
@@ -554,6 +732,27 @@
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <script type="module" src="./assets/js/main.js?v=20260806"></script>
+  <script>
+    const loadingCover = document.getElementById('loading-cover');
+    const progressFill = document.getElementById('loading-progress');
+    const progressText = document.getElementById('progress-text');
+    const duration = 2000 + Math.random() * 3000;
+    let progress = 0;
+    const startTime = Date.now();
+    const interval = setInterval(() => {
+      const elapsed = Date.now() - startTime;
+      progress = Math.min(100, (elapsed / duration) * 100);
+      progressFill.style.width = progress + '%';
+      progressText.textContent = Math.floor(progress) + '%';
+      if (progress >= 100) {
+        clearInterval(interval);
+        loadingCover.classList.add('hide');
+        setTimeout(() => {
+          loadingCover.style.display = 'none';
+        }, 800);
+      }
+    }, 50);
+  </script>
   <script>
     // Add this before your other scripts
     document.addEventListener('DOMContentLoaded', function() {
