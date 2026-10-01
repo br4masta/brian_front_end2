@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll-Driven Canvas Animation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+    
+    .loading-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+    .loading-overlay.hidden { opacity: 0; pointer-events: none; }
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(255,255,255,0.2);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 1s ease-in-out infinite;
+    }
+    .loading-text { color: #fff; margin-top: 16px; font-size: 14px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-out;
+    }
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .hero-section {
+      height: 100vh;
+      background: linear-gradient(135deg, #1e3a8a, #7c3aed);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section h1 { font-size: 4rem; font-weight: 800; margin-bottom: 1rem; }
+    .hero-section p { font-size: 1.25rem; opacity: 0.9; }
+    
+    .animation-section {
+      height: 500vh;
+      position: relative;
+    }
+    
+    .section-title {
+      position: absolute;
+      top: 10vh;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 20;
+      width: 100%;
+      pointer-events: none;
+    }
+    .section-title h2 {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      color: white;
+    }
+    .section-title p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      color: #cbd5e1;
+    }
+    
+    .cta-section {
+      position: absolute;
+      top: 50vh;
+      left: 45%;
+      transform: translateX(-50%);
+      z-index: 20;
+      width: fit-content;
+      pointer-events: none;
+    }
+    .cta-section button {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 0.75rem 2rem;
+      font-size: 1.125rem;
+      font-weight: 600;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+    .cta-section button:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+    
+   .canvas-container {
+  position: sticky; /* Ubah dari absolute menjadi sticky */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+    
+    #animationCanvas {
+      width: 100%;
+      max-width: 1920px;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      background: #000;
+      border-radius: 12px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    
+    .end-section {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      background: linear-gradient(135deg, #202b28, #000000);
+    }
+    .end-section h2 { font-size: 3rem; font-weight: 700; }
+    
+    @media (max-width: 768px) {
+      .hero-section h1 { font-size: 2.5rem; }
+      .section-title h2 { font-size: 2.5rem; }
+      .end-section h2 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="spinner"></div>
+    <div class="loading-text">Loading animation frames... (0/50)</div>
+  </div>
+
+ 
+
+  <section class="animation-section">
+    <div class="section-title">
+      <h2 class="fade-in-up">Watch the Animation</h2>
+      <p class="fade-in-up" style="transition-delay: 0.1s">Scroll to reveal the transformation. Each frame is carefully crafted to tell a story.</p>
+    </div>
+    
+    <div class="cta-section fade-in-up" style="transition-delay: 0.2s">
+      <button onclick="alert('Thank you for clicking!')">Explore More</button>
+    </div>
+    
+    <div class="canvas-container" sty>
+      <canvas id="animationCanvas"></canvas>
+    </div>
+  </section>
+
+  <!-- <section class="end-section">
+    <div>
+      <h2>Thanks for watching!</h2>
+    </div>
+  </section> -->
+
+  <script>
+    (function() {
+      const CANVAS_ID = 'animationCanvas';
+      const LOADING_ID = 'loadingOverlay';
+      const FRAME_COUNT = 50;
+      const FRAME_PATH = 'assets/images/animation-landing/landing-testing/ezgif-frame-';
+      const FRAME_EXT = '.jpg';
+      
+      const canvas = document.getElementById(CANVAS_ID);
+      const ctx = canvas.getContext('2d');
+      const loadingOverlay = document.getElementById(LOADING_ID);
+      const loadingText = loadingOverlay.querySelector('.loading-text');
+      
+      let preloadedImages = [];
+      let loadedCount = 0;
+      let isAnimating = false;
+      
+      function resizeCanvas() {
+        const container = canvas.parentElement;
+        const containerWidth = container.clientWidth;
+        const aspectRatio = 16 / 9;
+        const maxWidth = 1920;
+        
+        let displayWidth = Math.min(containerWidth, maxWidth);
+        let displayHeight = displayWidth / aspectRatio;
+        
+        canvas.style.width = displayWidth + 'px';
+        canvas.style.height = displayHeight + 'px';
+        
+        canvas.width = displayWidth;
+        canvas.height = displayHeight;
+      }
+      
+      function preloadFrame(frameNumber) {
+        return new Promise((resolve) => {
+          const frameNumPadded = frameNumber.toString().padStart(3, '0');
+          const img = new Image();
+          
+          img.onload = () => {
+            preloadedImages[frameNumber - 1] = img;
+            loadedCount++;
+            loadingText.textContent = `Loading animation frames... (${loadedCount}/${FRAME_COUNT})`;
+            resolve();
+          };
+          
+          img.onerror = () => {
+            console.error(`Gagal memuat gambar di jalur: ${FRAME_PATH}${frameNumPadded}${FRAME_EXT}`);
+            loadedCount++;
+            loadingText.textContent = `Loading animation frames... (${loadedCount}/${FRAME_COUNT})`;
+            resolve();
+          };
+          
+          img.src = `${FRAME_PATH}${frameNumPadded}${FRAME_EXT}`;
+        });
+      }
+      
+      async function preloadAllFrames() {
+        loadingOverlay.classList.remove('hidden');
+        
+        const promises = [];
+        for (let i = 1; i <= FRAME_COUNT; i++) {
+          promises.push(preloadFrame(i));
+        }
+        
+        await Promise.all(promises);
+        
+        resizeCanvas();
+        loadingOverlay.classList.add('hidden');
+        isAnimating = true;
+        startScrollAnimation();
+      }
+      
+      function getScrollPercentage() {
+        const section = document.querySelector('.animation-section');
+        const rect = section.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        const scrollTop = -rect.top;
+        const maxScroll = section.offsetHeight - windowHeight;
+        
+        let percentage = scrollTop / maxScroll;
+        percentage = Math.max(0, Math.min(1, percentage));
+        
+        return percentage;
+      }
+      
+      function renderFrame(frameIndex) {
+        const frameNum = Math.floor(frameIndex);
+        const imageIndex = Math.max(0, Math.min(FRAME_COUNT - 1, frameNum));
+        const img = preloadedImages[imageIndex];
+        
+        if (!img) return;
+        
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
+        const renderWidth = img.width * scale;
+        const renderHeight = img.height * scale;
+        const offsetX = (canvas.width - renderWidth) / 2;
+        const offsetY = (canvas.height - renderHeight) / 2;
+        
+        ctx.drawImage(img, offsetX, offsetY, renderWidth, renderHeight);
+      }
+      
+      function onScroll() {
+        if (!isAnimating) return;
+        
+        const scrollPercentage = getScrollPercentage();
+        const frameIndex = scrollPercentage * (FRAME_COUNT - 1);
+        renderFrame(frameIndex);
+      }
+      
+      function onResize() {
+        resizeCanvas();
+        onScroll();
+      }
+      
+      function startScrollAnimation() {
+        let ticking = false;
+        
+        const onScrollHandler = () => {
+          if (!ticking) {
+            requestAnimationFrame(() => {
+              onScroll();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        };
+        
+        window.addEventListener('scroll', onScrollHandler, { passive: true });
+        window.addEventListener('resize', onResize);
+        
+        onScroll();
+      }
+      
+      if (document.readyState === 'complete') {
+        preloadAllFrames();
+      } else {
+        window.addEventListener('load', preloadAllFrames);
+      }
+      
+      const fadeUpObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.15 });
+      
+      document.querySelectorAll('.fade-in-up').forEach(el => {
+        fadeUpObserver.observe(el);
+      });
+    })();
+  </script>
+</body>
+</html>
