@@ -1061,7 +1061,7 @@ main {
   left: -30px;
   width: 1px;
   height: calc(100% + 50px);
-  background: var (--jet);
+  background: var(--jet);
 }
 
 .timeline-item::after {
